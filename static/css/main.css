@@ -1,0 +1,131 @@
+/* ----------------Main Stylesheet---------------- */
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding:0;
+}
+
+body {
+   -webkit-print-color-adjust: exact;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #616161;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6f6f6f;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-pane {
+  position: relative;
+  resize: horizontal;
+  width: 70vw;
+  max-width: calc(100vw - 580px);
+}
+
+.split-pane {
+  width: 16px;
+  height: 100%;
+  position: relative;
+  background-color: #616161;
+  cursor: w-resize;
+}
+
+.split-pane:hover {
+  background: #6f6f6f;
+}
+
+.right-pane {
+  position: relative;
+  flex: 1;
+  width: 50%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #3d3d3d;
+  z-index: 1;
+}
+
+.text-editor {
+  outline: none;
+  resize: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  background-color: #3d3d3d;
+
+  padding: 20px;
+}
+
+.preview {
+  transform-origin: 0% 0%;
+  padding: 20px;
+
+  position: relative;
+  top: -35px;
+}
+
+.print-button {
+  z-index: 2;
+
+  height: 35px;
+  width: 35px;
+
+  position: absolute;
+  right: 15px;
+  top: 10px;
+
+  border-radius: 2px;
+  background-color: red;
+}
+
+.scale-box {
+  z-index: 2;
+
+  height: 35px;
+  width: 60px;
+
+  position: sticky;
+  top: 96vh;
+  left: 10px;
+
+
+  display: table-cell;
+  vertical-align: middle;
+
+}
+
+.scale-box-text {
+  height: 100%;
+  width: 100%;
+
+  border-radius: 2px;
+  background-color: #616161;
+
+  text-align: center;
+
+  outline: none;
+  resize: none;
+  border: none;
+
+  font-size: 1.5rem;
+  line-height: 31px;
+  color: white;
+}
+
+.scale-box-text:hover{
+    background: #6f6f6f;
+}
