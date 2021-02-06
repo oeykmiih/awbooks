@@ -14,6 +14,10 @@ basic markdown language is supported/under way.
 
 i've added a few more things in order to work faster on creating a book.
 
+## demo
+
+a demo version is available at https://oeyk.xyz/awbooks-markdown/, made possible by github pages!
+
 ## notice
 
 bear in mind I'm a novice in code in general and the main goal here to get used to it. any suggestions and tips are welcome!
