@@ -1,6 +1,6 @@
 // Variables
 let markdownText = document.querySelector('.text-editor').textContent;
-let cssText;
+let cssText = "";
 let html;
 let htmlSTA;
 let bookName = "book title";
@@ -33,18 +33,19 @@ function parseMarkdown(raw) {
   //Get CSS from raw
   cssText = raw    .match(/<style>.*<\/style>/gis);
   cssText[0] = String(cssText).replace(/<\/*style>/gis, '');
-  cssCustom.innerHTML = cssText;
+  cssCustom.textContent = cssText;
 
   const htmlText = raw
 
   // Added Syntax
 
     .replace(/^\\"([\w ,\.\?\;\-\'\/\(\)]+)"$/im, '<title>$1</title>')
-    .replace(/^\\pageauto$/gim, '<div class="page-number auto"></div></div><div class="page">')
+    .replace(/^\\pageauto$/gim, '<div class="page-number auto"></div></div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
+    .replace(/^\\page\s(\d+)$/gim, '<div class="page-number">$1</div></div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
     .replace(/^\\page$/gim, '</div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
     .replace(/^\\auto$/gim, '<div class="page-number auto"></div>')
     .replace(/^\\bookname$/gim, '')
-    .replace(/^\\header "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="header" style="">$1</div>')
+    .replace(/^\#\> "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="header" style="">$1</div>')
 
     .replace(/\\imgl "([\w ,\.\?\;\-\'\/\(\)]+)" "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgL"><img src="$1" ><div class="img-label">$2</div></div>')
     .replace(/\\imgl "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgL"><img src="$1" ></div>')

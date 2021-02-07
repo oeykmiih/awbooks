@@ -10,13 +10,21 @@
 
 </head>
 <body>
-  <div class="toolbar">
-    <div class="button" id="toc-button">
 
+    <div class="toolbar">
+    <div class="button" id="dwn-button"><div class="user-message" id="dwn-message">download</div></div>
+    <label for="upd-button" class="button" display="none"><div class="user-message" id="upd-message">upload</div></label><input type="file" id="upd-button" value=""></input>
+    <div class="empty"></div>
+    <div class="button" id="toc-button"><div class="user-message" id="toc-message">table of contents</div></div>
+    <div class="button" style="display: contents">
+      <div class="user-message">scale preview!</div>
+      <div class="scale-box">
+
+        <textarea class="scale-box-text" rows="1" cols="1">100</textarea>
+
+      </div>
     </div>
-    <div class="scale-box">
-      <textarea class="scale-box-text" rows="1" cols="1">100</textarea>
-    </div>
+
   </div>
   <div class="container">
 
@@ -39,7 +47,7 @@ font-size: 12pt;
 
 \"anti-object"
 
-\header "Contents"
+#> "Contents"
 
 ## 2. Kuma's Disappearance \n an introduction to anti-object
 
@@ -96,9 +104,8 @@ Taut also made sketches of Katsura. In an atttempt to capture time in a two-dime
 
 <script src="static/scripts/split-pane.js"></script>
 <script src="static/scripts/markdown2html.js"></script>
-<script src="static/scripts/editor.js"></script>
 <script src="static/scripts/tools.js"></script>
-<script src="static/scripts/undo.js"></script>
+<script src="static/scripts/notice.js"></script>
 </body>
 <footer>
 

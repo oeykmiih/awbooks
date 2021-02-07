@@ -1,4 +1,10 @@
 /* ----------------Main Stylesheet---------------- */
+@keyframes hiddenToVisible {
+	0% { visibility: none; opacity: }
+  1% { visibility: visible; opacity: 0.00}
+	100% { opacity: 1.00; }
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -38,17 +44,61 @@ body {
     position: relative;
 }
 
+/* user-feedback */
+
+
+
 
 /* toolbar */
 
+.empty {
+  z-index: 2;
+  width: 5vh;
+}
+
 .button {
   z-index: 2;
+  height: 5vh;
   width: 5vh;
   background-color: #616161;
 }
 
 .button:hover{
     background: #6f6f6f;
+}
+
+.button:hover .user-message {
+  opacity: 100%;
+  visibility: visible;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 0.2s;
+}
+
+.user-message {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  vertical-align: middle;
+
+  text-transform: lowercase;
+  font-family: arial;
+  font-weight: ;
+  font-size: 1.5em;
+  padding: 10px;
+  background: #6f6f6f;
+  color: lightgray;
+
+  z-index: 1000;
+  opacity: 0%;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 0.2s;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 .scale-box {

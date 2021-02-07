@@ -109,7 +109,7 @@ body {
 }
 
 .page:nth-child(odd) .book-name {
-  display: none;
+  visibility: hidden;
 }
 
 .header {
@@ -151,7 +151,7 @@ body {
 }
 
 .page:nth-child(even) .chapter-name {
-  display: none;
+  visibility: hidden;
 }
 
 /* page number */
