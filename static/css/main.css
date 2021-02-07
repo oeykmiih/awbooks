@@ -3,6 +3,11 @@
   margin: 0;
   box-sizing: border-box;
   padding:0;
+
+  text-decoration: none;
+  /* font-family: arial; */
+  font-size: 1em;
+  color: #1c1c1c;
 }
 
 body {
@@ -36,32 +41,28 @@ body {
 
 /* toolbar */
 
-.print-button {
+.button {
   z-index: 2;
+  width: 5vh;
+  background-color: #616161;
+}
 
-  height: 35px;
-  width: 35px;
-
-  position: absolute;
-  right: 15px;
-  top: 10px;
-
-  border-radius: 2px;
-  background-color: red;
+.button:hover{
+    background: #6f6f6f;
 }
 
 .scale-box {
-  width: 60px;
+  width: 5vh;
+  height: inherit;
 
   position: absolute;
-  left: calc(83.325vw - 30px);
+  right: 0px;
 }
 
 .scale-box-text {
   height: 100%;
   width: 100%;
 
-  border-radius: 2px;
   background-color: #616161;
 
   text-align: center;
@@ -70,7 +71,7 @@ body {
   resize: none;
   border: none;
 
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 5vh;
   color: white;
 }
@@ -89,7 +90,7 @@ body {
 .left-pane {
   position: relative;
   resize: horizontal;
-  width: calc(66.66vw);
+  width: 74.5vw;
 }
 
 .split-pane {

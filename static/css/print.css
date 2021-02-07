@@ -6,16 +6,10 @@
     --page-height: 18cm;
   }
 
-  .split-pane, .left-pane{
+  .toolbar,
+  .split-pane,
+  .left-pane{
     display: none;
-  }
-
-  .scale-box {
-    display: none;
-  }
-
-  .toc {
-    margin: 0;
   }
 
   .right-pane {
@@ -24,13 +18,17 @@
 
   .preview {
     transform-origin: 0% 0%;
+    transform: scale(1) !important;
+
+    padding: 0px;
+    /* making sure it doesn't screw the pages */
   }
 
   body,
   html,
-  .pages,
-  .phb, .toc {
+  .page,
+  .toc {
     margin: 0 !important;
-    transform: scale(1) !important;
+
   }
 }

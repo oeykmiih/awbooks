@@ -12,9 +12,9 @@ const printButton = document.getElementById("print-button");
 
 // Get CSS
 const cssMain = loadFile('../../static/css/main.css');
-const cssPhb = loadFile('../../static/css/phb.css');
+const cssPage = loadFile('../../static/css/page.css');
 const cssCustom = document.getElementById('cssCustom');
-let css = cssPhb + cssText;
+let css = cssPage + cssText;
 
 function loadFile(filePath) {
     fetch(filePath).then(function(response) {
@@ -40,9 +40,9 @@ function parseMarkdown(raw) {
   // Added Syntax
 
     .replace(/^\\"([\w ,\.\?\;\-\'\/\(\)]+)"$/im, '<title>$1</title>')
-    .replace(/^\\pageauto$/gim, '<div class="pageNumber auto"></div></div><div class="phb">')
-    .replace(/^\\page$/gim, '</div><div class="phb"><div class="bookName">'+bookName[1]+'</div>')
-    .replace(/^\\auto$/gim, '<div class="pageNumber auto"></div>')
+    .replace(/^\\pageauto$/gim, '<div class="page-number auto"></div></div><div class="page">')
+    .replace(/^\\page$/gim, '</div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
+    .replace(/^\\auto$/gim, '<div class="page-number auto"></div>')
     .replace(/^\\bookname$/gim, '')
     .replace(/^\\header "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="header" style="">$1</div>')
 

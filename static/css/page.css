@@ -36,13 +36,12 @@ body {
   width: var(--page-width);
   height: var(--page-height);
   position: relative;
+  padding: 1.4cm 0.9cm 1.4cm 1.4cm;
+  break-after: always;
   background-image: url();
   background-size: contain;
   margin-bottom: 30px;
-  padding: 1.4cm 0.9cm 1.4cm 1.4cm;
   font-size: 12pt;
-  break-after: always;
-  position:relative;
 
   counter-increment: pageNumber;
   /* Page Counter   */
@@ -53,26 +52,24 @@ body {
   /* background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_2.png'); */
 }
 
-/* phb  */
+/* page  */
 
-.phb {
+.page {
   width: var(--page-width);
   height: var(--page-height);
   position: relative;
   background-image: url();
   background-size: contain;
   margin-top: 30px;
-  font-family: "";
   font-size: 12pt;
   break-before: always;
   break-after: always;
-  position:relative;
 
   counter-increment: pageNumber;
   /* Page Counter   */
 }
 
-.phb {
+.page {
   overflow-wrap:  break-word;
 
   background: white;
@@ -82,20 +79,19 @@ body {
 
 }
 
-.phb:nth-child(n+1):nth-child(odd) {
+.page:nth-child(n+1):nth-child(odd) {
   padding: 1.3cm 1.1cm 1.2cm 1.4cm;
-  /* background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_5.png'); */
   background-position: 0mm 1mm;
 }
 
-.phb:nth-child(n+1):nth-child(even) {
+.page:nth-child(n+1):nth-child(even) {
   padding: 1.3cm 1.4cm 1.2cm 1.1cm;
-  /* background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_8.png'); */
   background-position: -1.5mm 0mm;
 }
 
 /* book name */
-.phb .bookName {
+.page .book-name {
+
   position: absolute;
   left: 12mm;
   top: 4mm;
@@ -112,7 +108,7 @@ body {
   line-height: 16pt;
 }
 
-.phb:nth-child(odd) .bookName {
+.page:nth-child(odd) .book-name {
   display: none;
 }
 
@@ -129,7 +125,7 @@ body {
 
   text-transform: uppercase;
   text-align:center;
-  letter-spacing: -0.4pt;
+  letter-spacing: 0pt;
   word-spacing: 0pt;
   line-height: 16pt;
 
@@ -137,7 +133,7 @@ body {
 }
 
 /* chapter name  */
-.phb .chapterName {
+.page .chapter-name {
   position: absolute;
   right: 12mm;
   top: 4mm;
@@ -154,12 +150,12 @@ body {
   line-height: 16pt;
 }
 
-.phb:nth-child(even) .chapterName {
+.page:nth-child(even) .chapter-name {
   display: none;
 }
 
 /* page number */
-.phb .pageNumber {
+.page .page-number {
   position: absolute;
   right: 0.5mm;
   bottom: 5mm;
@@ -171,11 +167,11 @@ body {
   font-weight: 900;
 }
 
-.phb:nth-child(even) .pageNumber {
+.page:nth-child(even) .page-number {
   left: 0.5mm;
 }
 
-.book .pageNumber.auto::after {
+.book .page-number.auto::after {
   content: counter(pageNumber);
 }
 
@@ -184,7 +180,7 @@ body {
 .book h1, .book h2, .book h3, .book h4 {
   font-family: "gil";
   color: black;
-  font-weight: 700;
+  font-weight: 500;
 
   letter-spacing: -0.4pt;
   word-spacing: 0pt;
@@ -280,7 +276,7 @@ body {
 
   font-size: 10pt;
   font-family: 'gil';
-  font-weight: bold;
+  font-weight: 500;
   line-height: 11.5pt;
   letter-spacing: -0.08pt;
   word-spacing: 0.13pt;

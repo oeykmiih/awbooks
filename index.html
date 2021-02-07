@@ -4,21 +4,18 @@
 <head>
     <!-- <title>Markdown Editor</title> -->
     <link rel="stylesheet" href="static/css/main.css">
-    <link rel="stylesheet" href="static/css/phb.css">
+    <link rel="stylesheet" href="static/css/page.css">
     <link rel="stylesheet" href="static/css/print.css">
     <style id="cssCustom"></style>
 
 </head>
 <body>
   <div class="toolbar">
-    <div class="empty-cell">
-
-    </div>
-    <div class="empty-cell">
+    <div class="button" id="toc-button">
 
     </div>
     <div class="scale-box">
-      <textarea class="scale-box-text" rows="1" cols="1">120</textarea>
+      <textarea class="scale-box-text" rows="1" cols="1">100</textarea>
     </div>
   </div>
   <div class="container">
@@ -31,7 +28,7 @@
   --page-width: 11cm;
   --page-height: 18cm;
 }
-.phb {
+.page {
 background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_2.png');
 background: white;
 
@@ -96,9 +93,12 @@ Taut also made sketches of Katsura. In an atttempt to capture time in a two-dime
       </div>
     </div>
   </div>
+
 <script src="static/scripts/split-pane.js"></script>
 <script src="static/scripts/markdown2html.js"></script>
 <script src="static/scripts/editor.js"></script>
+<script src="static/scripts/tools.js"></script>
+<script src="static/scripts/undo.js"></script>
 </body>
 <footer>
 
