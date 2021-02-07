@@ -44,6 +44,7 @@ function parseMarkdown(raw) {
     .replace(/^\\page$/gim, '</div><div class="phb"><div class="bookName">'+bookName[1]+'</div>')
     .replace(/^\\auto$/gim, '<div class="pageNumber auto"></div>')
     .replace(/^\\bookname$/gim, '')
+    .replace(/^\\header "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="header" style="">$1</div>')
 
     .replace(/\\imgl "([\w ,\.\?\;\-\'\/\(\)]+)" "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgL"><img src="$1" ><div class="img-label">$2</div></div>')
     .replace(/\\imgl "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgL"><img src="$1" ></div>')

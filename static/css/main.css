@@ -24,16 +24,72 @@ body {
   background: #6f6f6f;
 }
 
+.toolbar {
+    height: 5vh;
+    width: 100vw;
+    background-color: #2b2b2b;
+
+    display: flex;
+    position: relative;
+}
+
+
+/* toolbar */
+
+.print-button {
+  z-index: 2;
+
+  height: 35px;
+  width: 35px;
+
+  position: absolute;
+  right: 15px;
+  top: 10px;
+
+  border-radius: 2px;
+  background-color: red;
+}
+
+.scale-box {
+  width: 60px;
+
+  position: absolute;
+  left: calc(83.325vw - 30px);
+}
+
+.scale-box-text {
+  height: 100%;
+  width: 100%;
+
+  border-radius: 2px;
+  background-color: #616161;
+
+  text-align: center;
+
+  outline: none;
+  resize: none;
+  border: none;
+
+  font-size: 1.5rem;
+  line-height: 5vh;
+  color: white;
+}
+
+.scale-box-text:hover{
+    background: #6f6f6f;
+}
+
+/* editor */
+
 .container {
   display: flex;
-  height: 100vh;
+  height: 95vh;
 }
 
 .left-pane {
   position: relative;
   resize: horizontal;
-  width: 70vw;
-  max-width: calc(100vw - 580px);
+  width: calc(66.66vw);
 }
 
 .split-pane {
@@ -75,57 +131,4 @@ body {
   padding: 20px;
 
   position: relative;
-  top: -35px;
-}
-
-.print-button {
-  z-index: 2;
-
-  height: 35px;
-  width: 35px;
-
-  position: absolute;
-  right: 15px;
-  top: 10px;
-
-  border-radius: 2px;
-  background-color: red;
-}
-
-.scale-box {
-  z-index: 2;
-
-  height: 35px;
-  width: 60px;
-
-  position: sticky;
-  top: 96vh;
-  left: 10px;
-
-
-  display: table-cell;
-  vertical-align: middle;
-
-}
-
-.scale-box-text {
-  height: 100%;
-  width: 100%;
-
-  border-radius: 2px;
-  background-color: #616161;
-
-  text-align: center;
-
-  outline: none;
-  resize: none;
-  border: none;
-
-  font-size: 1.5rem;
-  line-height: 31px;
-  color: white;
-}
-
-.scale-box-text:hover{
-    background: #6f6f6f;
 }

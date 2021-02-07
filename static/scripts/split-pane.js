@@ -18,6 +18,6 @@ function doDrag(e) {
 }
 
 function stopDrag(e) {
-    document.documentElement.removeEventListener('mousemove', doDrag, false);
-    document.documentElement.removeEventListener('mouseup', stopDrag, false);
+  document.documentElement.removeEventListener('mousemove', doDrag, false);
+  document.documentElement.removeEventListener('mouseup', stopDrag, false);
 }

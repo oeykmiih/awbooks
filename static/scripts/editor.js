@@ -3,7 +3,7 @@ let initialValue = document.querySelector('.scale-box-text').textContent;
 
 
 // Get HTML
-const scaleBox = document.querySelector('.scale-box-text')
+const scaleBoxText = document.querySelector('.scale-box-text')
 
 function setScale(value){
   scaleValue = value / 100;
@@ -11,7 +11,7 @@ function setScale(value){
   preview.style.transform = "scale(" + scaleValue + ")";
 }
 
-scaleBox.addEventListener('keyup', evt => {
+scaleBoxText.addEventListener('keyup', evt => {
   const {
     value
   } = evt.target;

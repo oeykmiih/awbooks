@@ -41,8 +41,7 @@ body {
   margin-bottom: 30px;
   padding: 1.4cm 0.9cm 1.4cm 1.4cm;
   font-size: 12pt;
-  page-break-before: always;
-  page-break-after: always;
+  break-after: always;
   position:relative;
 
   counter-increment: pageNumber;
@@ -54,10 +53,6 @@ body {
   /* background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_2.png'); */
 }
 
-.toc .header {
-
-}
-
 /* phb  */
 
 .phb {
@@ -66,11 +61,11 @@ body {
   position: relative;
   background-image: url();
   background-size: contain;
-  margin-bottom: 30px;
+  margin-top: 30px;
   font-family: "";
   font-size: 12pt;
-  page-break-before: always;
-  page-break-after: always;
+  break-before: always;
+  break-after: always;
   position:relative;
 
   counter-increment: pageNumber;
@@ -119,6 +114,26 @@ body {
 
 .phb:nth-child(odd) .bookName {
   display: none;
+}
+
+.header {
+  width:100%;
+  position: absolute;
+  top:4mm;
+  left:0;
+
+  font-family: "gil";
+  color: black;
+  font-weight: 700;
+  font-size: 12pt;
+
+  text-transform: uppercase;
+  text-align:center;
+  letter-spacing: -0.4pt;
+  word-spacing: 0pt;
+  line-height: 16pt;
+
+
 }
 
 /* chapter name  */
@@ -193,7 +208,6 @@ body {
   padding-bottom: 13pt;
 }
 
-/* header */
 .book h3 {
   font-size: 12pt;
 }
@@ -201,14 +215,6 @@ body {
 
 
 .book h4 {
-  width:100%;
-  position: absolute;
-  top:4mm;
-  left:0%;
-
-  font-size: 12pt;
-  text-transform: uppercase;
-  text-align:center;
 }
 
 .book p{
