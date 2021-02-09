@@ -1,6 +1,8 @@
 let dwnMessage = document.getElementById('dwn-message');
 let updMessage = document.getElementById('upd-message');
 let tocMessage = document.getElementById('toc-message');
+let newMessage = document.getElementById('new-message');
+let saveMessage = document.getElementById('save-message');
 
 
 function updateAlert(value) {
@@ -19,6 +21,12 @@ function checkButton(value) {
     case "toc":
       tocMessage.innerHTML = "ctrl + v to paste!";
       return
+    case "new":
+      newMessage.innerHTML = "created!";
+      return
+    case "save":
+      saveMessage.innerHTML = "saved!";
+      return
   }
 }
 
@@ -26,4 +34,7 @@ function clearMessages() {
   dwnMessage.innerHTML = "download";
   updMessage.innerHTML = "upload";
   tocMessage.innerHTML = "table of contents";
+  newMessage.innerHTML = "new file";
+  saveMessage.innerHTML = "save";
+
 }

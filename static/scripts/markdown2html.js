@@ -9,21 +9,41 @@ let bookName = "book title";
 const textEditor = document.getElementById('text-editor');
 const preview = document.querySelector('.preview');
 const printButton = document.getElementById("print-button");
+const storedMarkdown = window.localStorage.getItem("markdown");
 
 // Get CSS
-const cssMain = loadFile('../../static/css/main.css');
-const cssPage = loadFile('../../static/css/page.css');
-const cssCustom = document.getElementById('cssCustom');
+let cssMain = loadFile("../../static/css/main.css");
+cssMain.then(a => {cssMain = a});
+
+let cssPage = loadFile("../../static/css/page.css");
+cssPage.then(a => {cssPage = a});
+
+const cssCustom = document.getElementById('css-custom');
 let css = cssPage + cssText;
 
-function loadFile(filePath) {
-    fetch(filePath).then(function(response) {
-    return response.text().then(function(text) {
-      return text;
-    });
-  });
+function loadFile(path) {
+  return fetch(path)
+  .then((response) => response.text())
+  .then((text) => {
+
+    return text;
+
+  })
+  .catch(err => {console.log(err);});
 }
 
+// debounce feature -> updates every x seconds
+let debounce = (func, delay) => {
+  let Timer
+  return function() {
+  const context = this
+  const args = arguments
+  clearTimeout(Timer)
+  Timer
+  = setTimeout(() =>
+  func.apply(context, args), delay)
+  }
+}
 
 // ----------------Render Preview----------------
 
@@ -53,11 +73,9 @@ function parseMarkdown(raw) {
     .replace(/^\\bookname$/gim, '')
     .replace(/^\#\> "(.+)"/gim, '<div class="header" style="">$1</div>')
 
-    .replace(/\\imgL "(.+)" "(.+)"/gim, '<div class="imgL"><img src="$1" ><div class="img-label">$2</div></div>')
-    .replace(/\\imgL "(.+)"/gim, '<div class="imgL"><img src="$1" ></div>')
-    .replace(/\\imgR "(.+)" "(.+)"/gim, '<div class="imgR"><img src="$1" ><div class="img-label">$2</div></div>')
-    .replace(/\\imgR "(.+)"/gim, '<div class="imgR"><img src="$1" ></div>')
-
+    .replace(/\\imgL\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?\w\:([^\n]*))?/gim,  '<div class="imgL" style="width:$3;"><img src="$1"><div class="img-label">$2</div></div>')
+    .replace(/\\imgR\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?\w\:([^\n]*))?/gim,  '<div class="imgR" style="width:$3;"><img src="$1"><div class="img-label">$2</div></div>')
+    .replace(/\\img\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?\w\:([^\n]*))?/gim,  '<div class="img" style="width:$3;"><img src="$1"><div class="img-label">$2</div></div>')
 
   // Base Syntax
     .replace(/^# (.*)/gim, '<h1>$1</h1>')
@@ -70,7 +88,7 @@ function parseMarkdown(raw) {
     .replace(/^([^\<\n]+)/gim, '<p>$1</p>')
     .replace(/^(\n\n)/gim, '<div class="paragraph-break"></div>')
     .replace(/\\n/gim, '<br>')
- 
+
 
 
     // .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')
@@ -117,15 +135,21 @@ function pushPreview(value){
 }
 
 // Update Preview
-textEditor.addEventListener('keyup', evt => {
-  const {
-    value
-  } = evt.target;
-  pushPreview(value);
-})
+textEditor.addEventListener('keyup', debounce(evt => {
 
-// Prevents Preview from being blank
-pushPreview(textEditor.textContent);
+  const { value } = evt.target;
+
+  pushPreview(value);
+
+}, 1000))
+
+// prevents preview from being blank
+if (storedMarkdown) {
+  textEditor.value = storedMarkdown;
+  pushPreview(storedMarkdown);
+} else {
+  pushPreview(textEditor.textContent);
+}
 
 // ----------------Render Standalone----------------
 

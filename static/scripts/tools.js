@@ -7,6 +7,9 @@ let scaleInitialValue = document.querySelector('.scale-box-text').textContent;
 const scaleBoxText = document.querySelector('.scale-box-text')
 const book = document.querySelector('.book');
 
+let markdownDefault = loadFile("../../static/text/new.txt");
+markdownDefault.then(a => {markdownDefault = a});
+
 // !core functionality
 
 // caret position
@@ -77,8 +80,8 @@ function downloadasTextFile(filename, text) {
     document.body.removeChild(element);
 }
 
-  // start file download.
-  document.getElementById("dwn-button").addEventListener("click", function(){
+  // start download.
+document.getElementById("dwn-button").addEventListener("click", function(){
 
     let text = markdownText;
     let filename = bookName[1] + ".txt";
@@ -90,7 +93,6 @@ function downloadasTextFile(filename, text) {
 }, false);
 
 // upload
-
 let updfile = document.getElementById("upd-button")
 updfile.addEventListener("change", readFile);
 
@@ -105,6 +107,7 @@ function readFile(e) {
     updateAlert("upd");
     savedCaret [0] = getCaretPosition(textEditor).start;
     savedCaret [1] = getCaretPosition(textEditor).end;
+
     navigator.clipboard.writeText(reader.result);
 
   };
@@ -115,10 +118,25 @@ function readFile(e) {
 
 }
 
+// save
+document.getElementById("save-button").addEventListener("click", function(){
 
-
+  window.localStorage.setItem("markdown", markdownText);
+  updateAlert("save");
+}, false);
 
 // !snippets
+
+// new file
+document.getElementById("new-button").addEventListener("click", function(){
+
+  textEditor.value = markdownDefault;
+  pushPreview(textEditor.value)
+
+  updateAlert("new");
+}, false);
+
+
 
 // toc
 function generateTOC(raw) {
@@ -129,7 +147,7 @@ function generateTOC(raw) {
 
     .match(/^#\s(.*?)$/gim)
 
-    if (!headings.length) {
+    if (headings == null) {
       return
     }
 
@@ -152,13 +170,11 @@ document.getElementById("toc-button").addEventListener("click", function() {
 });
 
 
-generateTOC (markdownText)
-// summon on load
+generateTOC (markdownText) // summon on load
 
 // scale box
 function setScale(value){
   scaleValue = value / 100;
-  console.log(scaleValue);
   book.style.transform = "scale(" + scaleValue + ")";
 }
 
@@ -169,5 +185,4 @@ scaleBoxText.addEventListener('keyup', evt => {
   setScale(value);
 })
 
-setScale(scaleInitialValue);
-// summon on load
+setScale(scaleInitialValue); // summon on load

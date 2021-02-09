@@ -61,6 +61,11 @@ body {
   height: 5vh;
   width: 5vh;
   background-color: #616161;
+
+	text-align: center;
+	font-size: 1.25rem;
+	line-height: 5vh;
+	color: white;
 }
 
 .button:hover{
@@ -140,7 +145,7 @@ input[type="file"] {
 .left-pane {
   position: relative;
   resize: horizontal;
-  width: calc(100vw - calc(110mm + 40px));
+  width: calc(100vw - calc(110mm + 72px));
 }
 
 .split-pane {

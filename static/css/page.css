@@ -19,6 +19,9 @@
 * {
   box-sizing: border-box;
   margin: 0;
+
+  	font-family: "gil";
+
 }
 
 body {
@@ -178,7 +181,6 @@ body {
 /* Text Styling */
 
 .book h1, .book h2, .book h3, .book h4 {
-  font-family: "gil";
   color: black;
   font-weight: 600;
 
@@ -204,6 +206,10 @@ body {
   padding-bottom: 13pt;
 }
 
+.book p+h2, .paragraph-break+h2 {
+  padding-top: 13pt;
+}
+
 .book h3 {
   font-size: 12pt;
   padding-bottom: 13pt;
@@ -222,8 +228,8 @@ body {
   letter-spacing: -0.08pt;
   word-spacing: 0.13pt;
 
+  font-family: serif;
   text-justify: none;
-  word-wrap:  break-word;
   text-indent: 0pt;
 }
 
@@ -238,37 +244,47 @@ body {
 .book img {
   position: relative;
   transform-origin: 0% 0%;
+  height: inherit;
   width: inherit;
   left: inherit;
   right: inherit;
 }
 
-.book .imgL {
-  width:35mm;
-  left: -4mm;
-  margin: 3mm 0mm 1mm 0mm;
+.book .img {
+  height:27mm;
+  left: 0mm;
   float: left;
-  text-align: center;
+  margin: 3mm 0mm 3mm 0mm;
+}
+
+.book .imgL {
+  width: 35mm;
+  left: -4mm;
+  margin: 3mm 0mm 3mm 0mm;
+  float: left;
+
 }
 
 .book .imgR {
   width:35mm;
   right: -4mm;
-  margin: 3mm 0mm 1mm 0mm;
+  margin: 3mm 0mm 3mm 0mm;
   float: right;
-  text-align: center;
-
 }
 
 .img-label {
   position: relative;
   left: inherit;
   right: inherit;
+  text-align: center;
 
   padding-top: 1mm;
 
   font-size: 8pt;
-  font-family: 'gil';
+}
+
+.img-label:empty {
+   display: none;
 }
 
 .book blockquote{
@@ -279,11 +295,8 @@ body {
   padding-bottom: 12pt;
 
   font-size: 10pt;
-  font-family: 'gil';
   font-weight: 600;
   line-height: 11.5pt;
   letter-spacing: -0.08pt;
   word-spacing: 0.13pt;
-
-  word-wrap: break-word;
 }
