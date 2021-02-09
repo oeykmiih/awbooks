@@ -32,25 +32,31 @@ function parseMarkdown(raw) {
 
   //Get CSS from raw
   cssText = raw    .match(/<style>.*<\/style>/gis);
+  if (cssText == null) {
+    cssText = "";
+  }
   cssText[0] = String(cssText).replace(/<\/*style>/gis, '');
-  cssCustom.textContent = cssText;
+  cssCustom.textContent = cssText[0];
 
-  const htmlText = raw
+  let htmlText = raw
+
+  // cleanup raw
+    .replace(/<style>.*<\/style>/gis, '')
 
   // Added Syntax
 
-    .replace(/^\\"([\w ,\.\?\;\-\'\/\(\)]+)"$/im, '<title>$1</title>')
+    .replace(/^\\"(.+)"$/im, '<title>$1</title>')
     .replace(/^\\pageauto$/gim, '<div class="page-number auto"></div></div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
     .replace(/^\\page\s(\d+)$/gim, '<div class="page-number">$1</div></div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
     .replace(/^\\page$/gim, '</div><div class="page"><div class="book-name">'+bookName[1]+'</div>')
     .replace(/^\\auto$/gim, '<div class="page-number auto"></div>')
     .replace(/^\\bookname$/gim, '')
-    .replace(/^\#\> "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="header" style="">$1</div>')
+    .replace(/^\#\> "(.+)"/gim, '<div class="header" style="">$1</div>')
 
-    .replace(/\\imgl "([\w ,\.\?\;\-\'\/\(\)]+)" "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgL"><img src="$1" ><div class="img-label">$2</div></div>')
-    .replace(/\\imgl "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgL"><img src="$1" ></div>')
-    .replace(/\\imgR "([\w ,\.\?\;\-\'\/\(\)]+)" "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgR"><img src="$1" ><div class="img-label">$2</div></div>')
-    .replace(/\\imgR "([\w ,\.\?\;\-\'\/\(\)]+)"/gim, '<div class="imgR"><img src="$1" ></div>')
+    .replace(/\\imgL "(.+)" "(.+)"/gim, '<div class="imgL"><img src="$1" ><div class="img-label">$2</div></div>')
+    .replace(/\\imgL "(.+)"/gim, '<div class="imgL"><img src="$1" ></div>')
+    .replace(/\\imgR "(.+)" "(.+)"/gim, '<div class="imgR"><img src="$1" ><div class="img-label">$2</div></div>')
+    .replace(/\\imgR "(.+)"/gim, '<div class="imgR"><img src="$1" ></div>')
 
 
   // Base Syntax
@@ -59,9 +65,12 @@ function parseMarkdown(raw) {
     .replace(/^### (.*)/gim, '<h3>$1</h3>')
     .replace(/^#### (.*)/gim, '<h4>$1</h4>')
     .replace(/^##### (.*)/gim, '<h5>$1</h5>')
-    .replace(/^([\w ,\.\?\;\-\'\/\(\)]+)/gim, '<p>$1</p>')
-    .replace(/(\\n)/gim, '<br>')
     .replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>')
+    .replace(/^\-(.+)/gim, '<p style="text-indent: 0rem;">$1</p>')
+    .replace(/^([^\<\n]+)/gim, '<p>$1</p>')
+    .replace(/^(\n\n)/gim, '<div class="paragraph-break"></div>')
+    .replace(/\\n/gim, '<br>')
+ 
 
 
     // .replace(/\*\*(.*)\*\*/gim, '<b>$1</b>')

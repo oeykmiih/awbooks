@@ -28,7 +28,7 @@ body {
 .book {
   --page-width: 11cm;
   --page-height: 18cm;
-  transform-origin: 50% 0%;
+  transform-origin: 0% 0%;
 }
 /* toc  */
 
@@ -95,13 +95,13 @@ body {
   position: absolute;
   left: 12mm;
   top: 4mm;
-  width: 40mm;
+  width: 44mm;
   text-align: left;
 
   font-family: "gil";
   text-transform: uppercase;
   color: black;
-  font-size: 9pt;
+  font-size: 7pt;
   font-weight: 800;
   letter-spacing: 0pt;
   word-spacing: 0pt;
@@ -180,9 +180,9 @@ body {
 .book h1, .book h2, .book h3, .book h4 {
   font-family: "gil";
   color: black;
-  font-weight: 500;
+  font-weight: 600;
 
-  letter-spacing: -0.4pt;
+  letter-spacing: 0pt;
   word-spacing: 0pt;
   line-height: 16pt;
 }
@@ -198,7 +198,7 @@ body {
 }
 
 .book h2 {
-  font-size: 12pt;
+  font-size: 11pt;
   text-transform: uppercase;
 
   padding-bottom: 13pt;
@@ -206,11 +206,14 @@ body {
 
 .book h3 {
   font-size: 12pt;
+  padding-bottom: 13pt;
 }
 
-
-
 .book h4 {
+}
+
+.book br{
+  /* display: none; */
 }
 
 .book p{
@@ -221,14 +224,15 @@ body {
 
   text-justify: none;
   word-wrap:  break-word;
+  text-indent: 0pt;
 }
 
-.book p+p {
+.book .paragraph-break{
+  display: none;
+}
+
+.book .paragraph-break+p {
   text-indent: 1rem;
-}
-
-.book p+img+p {
-  text-indent: 0rem;
 }
 
 .book img {
@@ -276,7 +280,7 @@ body {
 
   font-size: 10pt;
   font-family: 'gil';
-  font-weight: 500;
+  font-weight: 600;
   line-height: 11.5pt;
   letter-spacing: -0.08pt;
   word-spacing: 0.13pt;

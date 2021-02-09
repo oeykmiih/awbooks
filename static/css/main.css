@@ -140,7 +140,7 @@ input[type="file"] {
 .left-pane {
   position: relative;
   resize: horizontal;
-  width: 74.5vw;
+  width: calc(100vw - calc(110mm + 40px));
 }
 
 .split-pane {
@@ -178,7 +178,6 @@ input[type="file"] {
 }
 
 .preview {
-  transform-origin: 0% 0%;
   padding: 20px;
 
   position: relative;

@@ -5,6 +5,7 @@ let scaleInitialValue = document.querySelector('.scale-box-text').textContent;
 
 // Get HTML
 const scaleBoxText = document.querySelector('.scale-box-text')
+const book = document.querySelector('.book');
 
 // !core functionality
 
@@ -158,7 +159,7 @@ generateTOC (markdownText)
 function setScale(value){
   scaleValue = value / 100;
   console.log(scaleValue);
-  preview.style.transform = "scale(" + scaleValue + ")";
+  book.style.transform = "scale(" + scaleValue + ")";
 }
 
 scaleBoxText.addEventListener('keyup', evt => {
