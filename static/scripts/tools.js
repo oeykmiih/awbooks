@@ -1,103 +1,47 @@
-// Variables
-let toc = "";
-let savedCaret = [];
-let scaleInitialValue = document.querySelector('.scale-box-text').textContent;
+//---------------- Fire Functions, Event Listener ----------------
 
-// Get HTML
-const scaleBoxText = document.querySelector('.scale-box-text')
-const book = document.querySelector('.book');
+parseTOC (html) // summon on load
 
-let markdownDefault = loadFile("../../static/text/new.txt");
-markdownDefault.then(a => {markdownDefault = a});
+setScale(scale); // summon on load
 
-// !core functionality
+newButton.addEventListener('click', newFile, false);
+saveButton.addEventListener('click', saveFile, false);
+updButton.addEventListener('change', readFile);
+dwnButton.addEventListener('click', downloadMarkdown , false);
+tocButton.addEventListener('click', getTOC, false);
+splitPane.addEventListener('mousedown', initDrag, false);
+scaleBox.addEventListener('keyup', evt => {
+  const {
+    value
+  } = evt.target;
+  setScale(value);
+})
 
-// caret position
-function getCaretPosition(ctrl) {
-    // IE < 9 Support
-    if (document.selection) {
-        ctrl.focus();
-        var range = document.selection.createRange();
-        var rangelen = range.text.length;
-        range.moveStart('character', -ctrl.value.length);
-        var start = range.text.length - rangelen;
-        return {
-            'start': start,
-            'end': start + rangelen
-        };
-    } // IE >=9 and other browsers
-    else if (ctrl.selectionStart || ctrl.selectionStart == '0') {
-        return {
-            'start': ctrl.selectionStart,
-            'end': ctrl.selectionEnd
-        };
-    } else {
-        return {
-            'start': 0,
-            'end': 0
-        };
-    }
+//---------------- Tools ----------------
+
+
+//<--------- new file --------->
+function newFile() {
+
+    // textEditor.value = markdownDefault;
+    console.log("hey");
+    pushPreview(textEditor.value)
+    //
+    updateAlert("new");
 }
 
-function setCaretPosition(ctrl, start, end) {
-    // IE >= 9 and other browsers
-    if (ctrl.setSelectionRange) {
-        ctrl.focus();
-        ctrl.setSelectionRange(start, end);
-    }
-    // IE < 9
-    else if (ctrl.createTextRange) {
-        var range = ctrl.createTextRange();
-        range.collapse(true);
-        range.moveEnd('character', end);
-        range.moveStart('character', start);
-        range.select();
-    }
+//<--------- save file to browser --------->
+
+function saveFile() {
+
+  window.localStorage.setItem("markdown", markdownText);
+  updateAlert("save");
 }
 
-// clipboard
-function copyToClipboard(value) {
-  savedCaret [0] = getCaretPosition(textEditor).start;
-  savedCaret [1] = getCaretPosition(textEditor).end;
-  navigator.clipboard.writeText(value);
-}
+//<--------- upload markdown to browser --------->
 
-function pastInPlace() {
-  setCaretPosition(textEditor, savedCaret [0], savedCaret [1])
-}
-
-// download
-function downloadasTextFile(filename, text) {
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-}
-
-  // start download.
-document.getElementById("dwn-button").addEventListener("click", function(){
-
-    let text = markdownText;
-    let filename = bookName[1] + ".txt";
-
-
-    downloadasTextFile(filename, text);
-
-    updateAlert("dwn");
-}, false);
-
-// upload
-let updfile = document.getElementById("upd-button")
-updfile.addEventListener("change", readFile);
-
-function readFile(e) {
-  let file = updfile.files[0];
+function readFile() {
+  let file = updButton.files[0];
 
   let reader = new FileReader();
 
@@ -118,71 +62,109 @@ function readFile(e) {
 
 }
 
-// save
-document.getElementById("save-button").addEventListener("click", function(){
+//<--------- download markdown --------->
+function downloadMarkdown(){
 
-  window.localStorage.setItem("markdown", markdownText);
-  updateAlert("save");
-}, false);
+  let text = markdownText;
+  let filename = bookName + ".txt";
 
-// !snippets
+  downloadasTextFile(filename, text);
 
-// new file
-document.getElementById("new-button").addEventListener("click", function(){
+  updateAlert("dwn");
+}
 
-  textEditor.value = markdownDefault;
-  pushPreview(textEditor.value)
-
-  updateAlert("new");
-}, false);
-
-
-
-// toc
-function generateTOC(raw) {
+//<--------- table of contents --------->
+function parseTOC(raw) {
 
   toc = "";
 
-  let headings = raw
+let headings = raw.replace(/\<br\>/gim, '\\n')
+                  .split(/\<h1\>/gim)
+let chapterPage = new Array;
 
-    .match(/^#\s(.*?)$/gim)
+for (var i = 1; i < headings.length; i++) {
+  let match
+  let match2
 
-    if (headings == null) {
-      return
-    }
+  match = headings[i].match(/(?:<div class="page-number">)(\d+)/i);
+  chapterPage[i] = match[1];
 
-    for (var i = 0; i < headings.length; i++) {
-      toc = toc + "#" + headings[i] + "\r\r";
-    }
-
-    toc = toc.trim()
-    toc = toc + "\n";
-
-    return
+  match2 = headings[i].match(/(.*?)<\/h1>/i);
+  headings[i] = match2[1];
 }
 
+for (var i = 1; i < headings.length; i++) {
+  toc += '## ' + chapterPage[i] + '. ' + headings[i] + '\n\n'
+}
+    return toc
+}
 
-document.getElementById("toc-button").addEventListener("click", function() {
-  updateAlert("toc");
-  generateTOC (markdownText);
-  copyToClipboard(toc);
-  pastInPlace();
-});
+function getTOC() {
+    updateAlert("toc");
+    parseTOC (html);
+    copyToClipboard(toc);
+}
 
-
-generateTOC (markdownText) // summon on load
-
-// scale box
+//<--------- scale preview --------->
 function setScale(value){
-  scaleValue = value / 100;
-  book.style.transform = "scale(" + scaleValue + ")";
+  scale = value / 100;
+  preview.style.transform = "scale(" + scale + ")";
 }
 
-scaleBoxText.addEventListener('keyup', evt => {
-  const {
-    value
-  } = evt.target;
-  setScale(value);
-})
 
-setScale(scaleInitialValue); // summon on load
+//<--------- split pane --------->
+function initDrag(e) {
+
+
+
+   startX = e.clientX;
+   startWidth = parseInt(document.defaultView.getComputedStyle(leftPane).width, 10);
+   document.documentElement.addEventListener('mousemove', doDrag, false);
+   document.documentElement.addEventListener('mouseup', stopDrag, false);
+}
+
+function doDrag(e) {
+   leftPane.style.width = (startWidth + e.clientX - startX) + 'px';
+}
+
+function stopDrag(e) {
+  document.documentElement.removeEventListener('mousemove', doDrag, false);
+  document.documentElement.removeEventListener('mouseup', stopDrag, false);
+}
+
+
+//<--------- alert messages --------->
+function updateAlert(value) {
+  checkButton(value);
+  setTimeout(clearMessages, 5000)
+}
+
+// check button
+function checkButton(value) {
+  switch (value) {
+    case "new":
+    newMessage.innerHTML = "created!";
+    return
+    case "save":
+    saveMessage.innerHTML = "saved!";
+    return
+    case "dwn":
+      dwnMessage.innerHTML = "saved!";
+      return
+    case "upd":
+      updMessage.innerHTML = "ctrl + v to paste!";
+      return
+    case "toc":
+      tocMessage.innerHTML = "ctrl + v to paste!";
+      return
+  }
+}
+  // clear messages
+function clearMessages() {
+  newMessage.innerHTML = "new file";
+  saveMessage.innerHTML = "save";
+  dwnMessage.innerHTML = "download";
+  updMessage.innerHTML = "upload";
+  tocMessage.innerHTML = "table of contents";
+
+}

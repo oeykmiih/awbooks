@@ -1,1 +1,14 @@
-new file
+<style>
+
+.book {
+  --page-width: 11cm;
+  --page-height: 18cm;
+}
+.page {
+background-image: url('');
+background: white;
+
+font-size: 12pt;
+}
+
+</style>
