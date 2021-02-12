@@ -3,29 +3,33 @@
 const textEditor = document.getElementById('text-editor');
 const preview = document.getElementById('preview');
 const storedMarkdown = window.localStorage.getItem("markdown");
-const leftPane = document.querySelector(".left-pane");
-const splitPane = document.querySelector(".split-pane");
+const leftPane = document.querySelector('.left-pane');
+const splitPane = document.querySelector('.split-pane');
 const scaleBox = document.querySelector('.scale-box-text');
 
-const newButton = document.getElementById("new-button");
-const saveButton = document.getElementById("save-button");
-const updButton = document.getElementById("upd-button");
-const dwnButton = document.getElementById("dwn-button");
-const tocButton = document.getElementById("toc-button");
+const newButton = document.getElementById('new-button');
+const saveButton = document.getElementById('save-button');
+const updButton = document.getElementById('upd-button');
+const dwnButton = document.getElementById('dwn-button');
+const tocButton = document.getElementById('toc-button');
+const dbgpButton = document.getElementById('dbgp-button');
+const dbgIbButton = document.getElementById('dbgIb-button');
 
 const newMessage = document.getElementById('new-message');
 const saveMessage = document.getElementById('save-message');
 const updMessage = document.getElementById('upd-message');
 const dwnMessage = document.getElementById('dwn-message');
 const tocMessage = document.getElementById('toc-message');
+const dbgpMessage = document.getElementById('dbgp-message');
+const dbgIbMessage = document.getElementById('dbgIb-message');
 
 // css
-let cssMain = loadFile("../../static/css/main.css");
+let cssMain = loadFile('../../static/css/main.css');
 cssMain.then(a => {
   cssMain = a
 });
 
-let cssPage = loadFile("../../static/css/page.css");
+let cssPage = loadFile('../../static/css/page.css');
 cssPage.then(a => {
   cssPage = a
 }).then(a => {
@@ -40,7 +44,7 @@ let markdown = textEditor.textContent;
 let cssCustom = document.getElementById('css-custom').textContent;
 let scale = scaleBox.textContent;
 
-let markdownDefault = loadFile("../../static/text/new.txt");
+let markdownDefault = loadFile('../../static/text/new.txt');
 markdownDefault.then(a => {markdownDefault = a});
 
 let css;
@@ -49,10 +53,12 @@ let pages;
 let chapters;
 let chaptersPush = new Array;
 
-
 let toc = "";
 let savedCaret = [];
 let startX , startWidth;
+
+let debugMarginOn = "false";
+let debugImageOn = "false";
 
 //---------------- Essentials ----------------
 

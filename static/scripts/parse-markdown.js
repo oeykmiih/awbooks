@@ -53,10 +53,15 @@ function parseMarkdown(raw) {
   html = html.replace(/\\"([^"]*)"/im, '<title>$1</title>')
     .replace(/^\#\>\s?"([^"]*)"/gim, '<div class="header" style="">$1</div>')
 
-    //images
-    .replace(/^\\imgL\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?\w\:([^\n]*))?/gim, '<div class="imgL" style="width:$3;"><img src="/usr/images/$1.png"><div class="img-label">$2</div></div>')
-    .replace(/^\\imgR\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?\w\:([^\n]*))?/gim, '<div class="imgR" style="width:$3;"><img src="/usr/images/$1.png"><div class="img-label">$2</div></div>')
-    .replace(/^\\img\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?\w\:([^\n]*))?/gim, '<div class="img" style="width:$3;"><img src="/usr/images/$1.png"><div class="img-label">$2</div></div>')
+    //gallery images
+    .replace(/^\\gallery\s?\[([^\]]*?)\]/gim, '<div class="gallery">$1</div>')
+    .replace(/^\\imgc\s?"([^"]*)"(?:\s?"([^"]*?)")?(?:\s?w\:(\d*))?(?:\s?h\:(\d*))?(?:\s?([^\n]*))?/gim, '<div class="img-card" style="grid-column: $3 span; grid-row: $4 span; $5"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
+    .replace(/^\\empty\s?(?:\s?w\:(\d*))?(?:\s?h\:(\d*))?(?:\s?([^\n]*))?/gim, '<div class="empty" style="grid-column: $1 span; grid-row: $2 span; $3"></div>')
+
+    //single images
+    .replace(/^\\imgL\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?([^\n]*))?/gim, '<div class="imgL" style="$3;"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
+    .replace(/^\\imgR\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?([^\n]*))?/gim, '<div class="imgR" style="$3;"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
+    .replace(/^\\img\s?"([^"]*)"(?:\s?"([^"]*?)")?(?:\s?([^\n]*))?/gim, '<div class="img" style="$3"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
     .replace(/\\n/gim, '<br>')
 
     // vanilla markdown
@@ -91,6 +96,8 @@ function parseMarkdown(raw) {
     html += chaptersPush[i];
   }
 
+  html = html.replace(/(?:\<div class="chapter-name"\>.*?\<\/div\>\n+?)(\<h1>.*?\<\/h1\>)/g, '$1')
+
   return html
 }
 
@@ -109,6 +116,7 @@ function pushPreview(value) {
 
   //update markdownText value
   markdownText = value;
+  //update preview
   preview.innerHTML = html;
 }
 

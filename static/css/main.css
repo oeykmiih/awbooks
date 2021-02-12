@@ -65,6 +65,10 @@ body {
   height: 5vh;
   width: 5vh;
 
+
+	line-height: inherit;
+	text-align: inherit;
+	color: inherit;
 	font-size: inherit;
   background-color: #616161;
 }
@@ -109,6 +113,7 @@ input[type="file"] {
   width: 5vh;
   height: inherit;
 
+	color: inherit;
   position: absolute;
   right: 0px;
 }
@@ -116,7 +121,10 @@ input[type="file"] {
 .scale-box-text {
   height: 100%;
   width: 100%;
+	text-align: inherit;
+	line-height: inherit;
 
+	color: inherit;
   background-color: #616161;
 
   outline: none;

@@ -1,6 +1,11 @@
 /* ----------------Print---------------- */
 @media print {
 
+:root{
+  --debugPageMargin: none;
+  --debugImageBorder: none;
+}
+
   .book {
     --page-width: 11cm;
     --page-height: 18cm;

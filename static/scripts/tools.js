@@ -9,6 +9,8 @@ saveButton.addEventListener('click', saveFile, false);
 updButton.addEventListener('change', readFile);
 dwnButton.addEventListener('click', downloadMarkdown , false);
 tocButton.addEventListener('click', getTOC, false);
+dbgpButton.addEventListener('click', debugPageMargin, false);
+dbgIbButton.addEventListener('click', debugImageBorder, false);
 splitPane.addEventListener('mousedown', initDrag, false);
 scaleBox.addEventListener('keyup', evt => {
   const {
@@ -105,6 +107,32 @@ function getTOC() {
     copyToClipboard(toc);
 }
 
+//<--------- debug page margin --------->
+function debugPageMargin() {
+  if (debugMarginOn == "false") {
+  document.documentElement.style.setProperty("--debugPageMargin", "block");
+  debugMarginOn = "true";
+  updateAlert("dbgpOn");
+  } else {
+  document.documentElement.style.setProperty("--debugPageMargin", "none");
+  debugMarginOn = "false";
+  updateAlert("dbgpOff");
+}
+}
+
+//<--------- debug gallery image border --------->
+function debugImageBorder() {
+  if (debugImageOn == "false") {
+  document.documentElement.style.setProperty("--debugImageBorder", "block");
+  debugImageOn = "true";
+  updateAlert("dbgIbOn");
+  } else {
+  document.documentElement.style.setProperty("--debugImageBorder", "none");
+  debugImageOn = "false";
+  updateAlert("dbgIbOff");
+}
+}
+
 //<--------- scale preview --------->
 function setScale(value){
   scale = value / 100;
@@ -156,6 +184,18 @@ function checkButton(value) {
       return
     case "toc":
       tocMessage.innerHTML = "ctrl + v to paste!";
+      return
+    case "dbgpOn":
+      dbgpMessage.innerHTML = "page margins on";
+      return
+    case "dbgpOff":
+      dbgpMessage.innerHTML = "page margins off";
+      return
+    case "dbgIbOn":
+      dbgIbMessage.innerHTML = "image borders on";
+      return
+    case "dbgIbOff":
+      dbgIbMessage.innerHTML = "image borders off";
       return
   }
 }

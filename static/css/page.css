@@ -16,15 +16,20 @@
 
 /* base */
 
+:root {
+  --debugPageMargin: none;
+  --debugImageBorder: none;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
 
-  	font-family: "gil";
+	font-family: "gil";
 }
 
 body {
-  counter-reset: pageNumber;
+  counter-reset: images;
 }
 
 .book {
@@ -32,8 +37,8 @@ body {
   --page-height: 18cm;
   transform-origin: 0% 0%;
 }
-/* toc  */
 
+/* toc  */
 .toc {
   width: var(--page-width);
   height: var(--page-height);
@@ -46,13 +51,9 @@ body {
   font-size: 12pt;
 
   background-color: white;
-
-  /* DEBUG:  */
-  /* background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_2.png'); */
 }
 
-/* page  */
-
+/* pages  */
 .page {
   width: var(--page-width);
   height: var(--page-height);
@@ -63,16 +64,9 @@ body {
   font-size: 12pt;
   break-before: always;
   break-after: always;
-}
-
-.page {
   overflow-wrap:  break-word;
 
   background: white;
-
-  /* DEBUG */
-  /* background-image: url() !important; */
-
 }
 
 .page:nth-child(n+1):nth-child(odd) {
@@ -85,6 +79,31 @@ body {
   background-position: -1.5mm 0mm;
 }
 
+.page:nth-child(n+1):nth-child(even)::after {
+  content: '';
+  display: var(--debugPageMargin);
+  position: absolute;
+  top: 1.3cm;
+  left: 1.1cm;
+  bottom: 1.2cm;
+  right: 1.4cm;
+
+  border: dashed pink 2px;
+}
+
+.page:nth-child(n+1):nth-child(odd)::after {
+  content: '';
+  display: var(--debugPageMargin);
+  position: absolute;
+  top: 1.3cm;
+  left: 1.4cm;
+  bottom: 1.2cm;
+  right: 1.1cm;
+
+  border: dashed pink 2px;
+}
+
+/* header */
 .header {
   width:100%;
   position: absolute;
@@ -165,7 +184,7 @@ body {
   left: 0.5mm;
 }
 
-/* Text Styling */
+/* text */
 
 .book h1, .book h2, .book h3, .book h4 {
   color: black;
@@ -190,11 +209,11 @@ body {
   font-size: 11pt;
   text-transform: uppercase;
 
-  padding-bottom: 13pt;
+  padding-bottom: 10pt;
 }
 
 .book p+h2, .paragraph-break+h2 {
-  padding-top: 13pt;
+  padding-top: 10pt;
 }
 
 .book h3 {
@@ -206,7 +225,6 @@ body {
 }
 
 .book br{
-  /* display: none; */
 }
 
 .book p{
@@ -228,35 +246,65 @@ body {
   text-indent: 1rem;
 }
 
+.book blockquote{
+  position: relative;
+  left: -4mm;
+  width: calc(100% + 4mm);
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+
+  font-size: 10pt;
+  font-weight: 600;
+  line-height: 11.5pt;
+  letter-spacing: -0.08pt;
+  word-spacing: 0.13pt;
+}
+
+/* images */
+
 .book img {
   position: relative;
   transform-origin: 0% 0%;
   height: inherit;
-  width: inherit;
+  width: 100%;
   left: inherit;
   right: inherit;
 }
 
 .book .img {
-  height:27mm;
-  left: 0mm;
-  float: left;
-  margin: 3mm 0mm 3mm 0mm;
+  width: 33%;
+  left: 0;
+  margin: 3mm 0mm 0mm 0mm;
+  float: none;
 }
 
 .book .imgL {
-  width: 35mm;
+  width: 33%;
   left: -4mm;
-  margin: 3mm 0mm 3mm 0mm;
+  margin: 3mm 0mm 0mm 0mm;
   float: left;
-
 }
 
 .book .imgR {
-  width:35mm;
+  width:33%;
   right: -4mm;
-  margin: 3mm 0mm 3mm 0mm;
+  margin: 3mm 0mm 0mm 0mm;
   float: right;
+}
+
+.img+.imgL, .imgR+.imgL {
+  left: -2mm;
+}
+
+.img+.imgR, .imgL+.imgR {
+  right:-2mm;
+}
+
+.book .img-label::after {
+  counter-increment: images;
+  content: " " counter(images);
+  vertical-align: super;
+  font-size: 0.75em;
 }
 
 .img-label {
@@ -274,16 +322,57 @@ body {
    display: none;
 }
 
-.book blockquote{
-  position: relative;
-  left: -4mm;
-  width: calc(100% + 4mm);
-  padding-top: 12pt;
-  padding-bottom: 12pt;
+/* gallery */
 
-  font-size: 10pt;
-  font-weight: 600;
-  line-height: 11.5pt;
-  letter-spacing: -0.08pt;
-  word-spacing: 0.13pt;
+.book .gallery {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(100, 1fr);
+  grid-template-rows: repeat(100, 1fr);
+  grid-auto-flow: dense;
+}
+
+.book .img-card {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  grid-column: span 33;
+  grid-row: span 30;
+
+  padding: 1mm 1mm;
+  position: relative;
+}
+
+.book .img-card::after {
+  content: '';
+  display: var(--debugImageBorder);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  border: dashed red 1px;
+}
+
+.book .empty {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+}
+
+.book .empty::after {
+  content: '';
+  display: var(--debugImageBorder);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  border: dashed red 1px;
 }
