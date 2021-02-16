@@ -16,7 +16,7 @@ i've added a few more things in order to work faster on creating a book.
 
 ## demo
 
-a demo version is available at https://oeyk.xyz/awbooks/, made possible by github pages!
+a demo version is available at https://kyeo.xyz/awbooks/, made possible by github pages!
 
 ## notice
 
