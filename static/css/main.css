@@ -191,3 +191,8 @@ input[type="file"] {
 	transform-origin: 0% 0%;
   position: relative;
 }
+
+mark {
+	color: red;
+	background:red;
+}

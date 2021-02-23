@@ -25,8 +25,7 @@ scaleBox.addEventListener('keyup', evt => {
 //<--------- new file --------->
 function newFile() {
 
-    // textEditor.value = markdownDefault;
-    console.log("hey");
+    textEditor.value = markdownDefault;
     pushPreview(textEditor.value)
     //
     updateAlert("new");
@@ -55,7 +54,6 @@ function readFile() {
     savedCaret [1] = getCaretPosition(textEditor).end;
 
     navigator.clipboard.writeText(reader.result);
-
   };
 
   reader.onerror = function() {
@@ -89,7 +87,11 @@ for (var i = 1; i < headings.length; i++) {
   let match2
 
   match = headings[i].match(/(?:<div class="page-number">)(\d+)/i);
-  chapterPage[i] = match[1];
+  if (match == null) {
+    chapterPage[i] = '?';
+  } else {
+    chapterPage[i]=match[1] - 1;
+  }
 
   match2 = headings[i].match(/(.*?)<\/h1>/i);
   headings[i] = match2[1];
@@ -98,6 +100,8 @@ for (var i = 1; i < headings.length; i++) {
 for (var i = 1; i < headings.length; i++) {
   toc += '## ' + chapterPage[i] + '. ' + headings[i] + '\n\n'
 }
+
+toc = toc.slice(0, -2);
     return toc
 }
 

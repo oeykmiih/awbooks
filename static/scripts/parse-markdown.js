@@ -39,7 +39,7 @@ function parseMarkdown(raw) {
   // replace page breaks
   for (var i = 0; i < pages.length; i++) {
     pages[i] = pages[i].replace(/^\\pageauto.*$/gim, '</div><div class="page"><div class="page-number">' + i + '</div><div class="book-name">' + bookName + '</div><div class="chapter-name">%cp%</div>')
-    pages[i] = pages[i].replace(/^\\page.*$/gim, '</div><div class="page"><div class="book-name">' + bookName + '</div>')
+    pages[i] = pages[i].replace(/^\\page.*$/gim, '</div><div class="page">')
   }
 
   // join pages
@@ -54,14 +54,12 @@ function parseMarkdown(raw) {
     .replace(/^\#\>\s?"([^"]*)"/gim, '<div class="header" style="">$1</div>')
 
     //gallery images
-    .replace(/^\\gallery\s?\[([^\]]*?)\]/gim, '<div class="gallery">$1</div>')
-    .replace(/^\\imgc\s?"([^"]*)"(?:\s?"([^"]*?)")?(?:\s?w\:(\d*))?(?:\s?h\:(\d*))?(?:\s?([^\n]*))?/gim, '<div class="img-card" style="grid-column: $3 span; grid-row: $4 span; $5"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
+    .replace(/^\\gallery(\w)?\s?(?:(\d+))?\s?(?:(\d+))?\s?\[([^\]]*?)\]/gim, '<div class="gallery $1" style="height: $2%;grid-template-rows: repeat($2, 1fr); width: $3%; grid-template-columns: repeat($3, 1fr);">$4</div>')
+    .replace(/^\\imgc\s?"([^"]*)"(?:\s?"([^"]*?)")?(?:\s?w\:(\d*))?(?:\s?h\:(\d*))?(?:\s?([^\n]+))?/gim, '<div class="img-card" style="grid-column: $3 span; grid-row: $4 span; $5"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
     .replace(/^\\empty\s?(?:\s?w\:(\d*))?(?:\s?h\:(\d*))?(?:\s?([^\n]*))?/gim, '<div class="empty" style="grid-column: $1 span; grid-row: $2 span; $3"></div>')
 
     //single images
-    .replace(/^\\imgL\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?([^\n]*))?/gim, '<div class="imgL" style="$3;"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
-    .replace(/^\\imgR\s?"([^"]*)"(?:\s?"([^"]*)")?(?:\s?([^\n]*))?/gim, '<div class="imgR" style="$3;"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
-    .replace(/^\\img\s?"([^"]*)"(?:\s?"([^"]*?)")?(?:\s?([^\n]*))?/gim, '<div class="img" style="$3"><img src="/user/images/$1.png"><div class="img-label">$2</div></div>')
+    .replace(/^\\img(\w)?\s?"([^"]*)"(?:\s?"([^"]*?)")?(?:\s?([^\n]+))?/gim, '<div class="img $1" style="$4"><img src="/user/images/$2.png"><div class="img-label">$3</div></div>')
     .replace(/\\n/gim, '<br>')
 
     // vanilla markdown
@@ -74,6 +72,9 @@ function parseMarkdown(raw) {
     .replace(/^([^\#\n\<\\\>\%]+)/gim, '<p>$1</p>')
     .replace(/(\n\n\n+)/gim, '<div class="paragraph-break"></div>')
 
+    // caret position
+    .replace(/\^/gim, '<mark>!</mark>')
+
   // identify chapter ends
   chapters = html.split(/%c%/gim);
 
@@ -81,7 +82,7 @@ function parseMarkdown(raw) {
   for (var i = 1; i < chapters.length; i++) {
 
     let chaptername = chapters[i].match(/(?:\<h1>)(.*)(?:\<\/h1\>)/i)
-    chaptername = chaptername[0].replace(/(?:\<h1>[\s\d\.]*)(\w+(?:\s+\w+)?(?:\s+\w+)?).*/gim, '$1')
+    chaptername = chaptername[0].replace(/(?:\<h1>[\s\d\.]*)(\w+(?:\s+[\w\.]+)*).*/gim, '$1')
 
     chapters[i] = chapters[i].replace(/%cp%/gim, chaptername)
     chaptersPush[i] = chapters[i].replace(/%cp%/gim, chaptername)
@@ -96,7 +97,7 @@ function parseMarkdown(raw) {
     html += chaptersPush[i];
   }
 
-  html = html.replace(/(?:\<div class="chapter-name"\>.*?\<\/div\>\n+?)(\<h1>.*?\<\/h1\>)/g, '$1')
+  html = html.replace(/(?:\<div class="book-name"\>.*?\<\/div\>\n*?)(?:\<div class="chapter-name"\>.*?\<\/div\>\n*?)(\<h1>.*?\<\/h1\>)/g, '$1')
 
   return html
 }
