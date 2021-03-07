@@ -1,15 +1,10 @@
 /* ----------------Print---------------- */
 @media print {
 
-:root{
-  --debugPageMargin: none;
-  --debugImageBorder: none;
+html {
+  --debugPageMargin: none !important;
+  --debugImageBorder: none !important;
 }
-
-  .book {
-    --page-width: 11cm;
-    --page-height: 18cm;
-  }
 
   .toolbar,
   .split-pane,

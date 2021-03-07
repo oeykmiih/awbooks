@@ -16,7 +16,7 @@
 
 /* base */
 
-:root {
+html {
   --debugPageMargin: none;
   --debugImageBorder: none;
 }
