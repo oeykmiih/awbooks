@@ -111,7 +111,7 @@ body {
   left:0;
 
   color: black;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 12pt;
 
   text-transform: uppercase;
@@ -134,7 +134,7 @@ body {
   text-transform: uppercase;
   color: black;
   font-size: 7pt;
-  font-weight: 800;
+  font-weight: bold;
   letter-spacing: 0pt;
   word-spacing: 0pt;
   line-height: 16pt;
@@ -148,16 +148,16 @@ body {
 /* chapter name  */
 .page .chapter-name {
   position: absolute;
-  right: 12mm;
+  right: 10mm;
   top: 4mm;
-  width: 90mm;
+  width: 94mm;
   text-align: right;
   overflow: hidden;
 
   text-transform: uppercase;
   color: black;
   font-size: 7pt;
-  font-weight: 800;
+  font-weight: bold;
   letter-spacing: 0pt;
   word-spacing: 0pt;
   line-height: 16pt;
@@ -188,11 +188,16 @@ body {
 
 .book h1, .book h2, .book h3, .book h4 {
   color: black;
-  font-weight: 600;
+  font-weight: bold;
 
   letter-spacing: 0pt;
   word-spacing: 0pt;
-  line-height: 16pt;
+
+  /* chrome */
+/* line-height: 16pt; */
+
+    /* firefox */
+  line-height: 15.0pt;
 }
 
 .book h1 {
@@ -229,8 +234,14 @@ body {
 
 .book p{
   font-size: 10pt;
-  line-height: 11.5pt;
-  letter-spacing: -0.08pt;
+
+  /* chrome */
+/* line-height: 11.5pt; */
+
+    /* firefox */
+  line-height: 11.3pt;
+
+  letter-spacing: -0.09pt;
   word-spacing: 0.13pt;
 
   font-family: serif;
@@ -251,12 +262,17 @@ body {
   position: relative;
   left: -4mm;
   width: calc(100% + 4mm);
-  padding-top: 12pt;
-  padding-bottom: 12pt;
+  padding: 7pt 0;
 
-  font-size: 10pt;
-  font-weight: 600;
-  line-height: 11.5pt;
+  font-size: 9pt;
+  font-weight: bold;
+
+  /* chrome */
+/* line-height: 11.5pt; */
+
+    /* firefox */
+  line-height: 11.3pt;
+
   letter-spacing: -0.08pt;
   word-spacing: 0.13pt;
 }
@@ -337,7 +353,8 @@ body {
   counter-increment: images;
   content: " " counter(images);
   vertical-align: super;
-  font-size: 0.75em;
+  font-size: 6pt;
+  line-height: 0;
 }
 
 .img-label {
@@ -348,7 +365,8 @@ body {
 
   padding-top: 1mm;
 
-  font-size: 8pt;
+  font-size: 7pt;
+  line-height: 1.2;
 }
 
 .img-label:empty {
