@@ -28,12 +28,12 @@ const dbgIbMessage = document.getElementById('dbgIb-message');
 const dbgCMessage = document.getElementById('dbgC-message');
 
 // css
-let cssMain = loadFile('../../static/css/main.css');
+let cssMain = loadFile('static/css/main.css');
 cssMain.then(a => {
   cssMain = a
 });
 
-let cssPage = loadFile('../../static/css/page.css');
+let cssPage = loadFile('static/css/page.css');
 cssPage.then(a => {
   cssPage = a
 }).then(a => {
