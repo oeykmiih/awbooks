@@ -6,6 +6,8 @@ const storedMarkdown = window.localStorage.getItem("markdown");
 const leftPane = document.querySelector('.left-pane');
 const splitPane = document.querySelector('.split-pane');
 const scaleBox = document.querySelector('.scale-box-text');
+const editorHighlights = document.querySelector('.editor-highlights');
+
 
 const newButton = document.getElementById('new-button');
 const saveButton = document.getElementById('save-button');
@@ -14,6 +16,7 @@ const dwnButton = document.getElementById('dwn-button');
 const tocButton = document.getElementById('toc-button');
 const dbgpButton = document.getElementById('dbgp-button');
 const dbgIbButton = document.getElementById('dbgIb-button');
+const dbgCButton = document.getElementById('dbgC-button');
 
 const newMessage = document.getElementById('new-message');
 const saveMessage = document.getElementById('save-message');
@@ -22,6 +25,7 @@ const dwnMessage = document.getElementById('dwn-message');
 const tocMessage = document.getElementById('toc-message');
 const dbgpMessage = document.getElementById('dbgp-message');
 const dbgIbMessage = document.getElementById('dbgIb-message');
+const dbgCMessage = document.getElementById('dbgC-message');
 
 // css
 let cssMain = loadFile('../../static/css/main.css');
@@ -59,6 +63,9 @@ let startX , startWidth;
 
 let debugMarginOn = "false";
 let debugImageOn = "false";
+let debugCaret = "false";
+
+let textEditorContent;
 
 //---------------- Essentials ----------------
 
@@ -137,7 +144,7 @@ function setCaretPosition(ctrl, start, end) {
     }
 }
 
-// download
+//<--------- download --------->
 function downloadasTextFile(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));

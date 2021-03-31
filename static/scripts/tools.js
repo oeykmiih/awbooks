@@ -1,8 +1,16 @@
 //---------------- Fire Functions, Event Listener ----------------
 
+initParseOnLoad() // summon on load
+
 parseTOC (html) // summon on load
 
 setScale(scale); // summon on load
+
+textHighlights(); // summon on load
+
+textEditor.addEventListener('keyup',
+  debounce(evt => {const { value } = evt.target;pushPreview(value);textHighlights();}, 250));
+textEditor.addEventListener('scroll', handleScroll, false);
 
 newButton.addEventListener('click', newFile, false);
 saveButton.addEventListener('click', saveFile, false);
@@ -11,6 +19,7 @@ dwnButton.addEventListener('click', downloadMarkdown , false);
 tocButton.addEventListener('click', getTOC, false);
 dbgpButton.addEventListener('click', debugPageMargin, false);
 dbgIbButton.addEventListener('click', debugImageBorder, false);
+dbgCButton.addEventListener('click', debugCaretDisplay, false);
 splitPane.addEventListener('mousedown', initDrag, false);
 scaleBox.addEventListener('keyup', evt => {
   const {
@@ -20,8 +29,6 @@ scaleBox.addEventListener('keyup', evt => {
 })
 
 //---------------- Tools ----------------
-
-
 //<--------- new file --------->
 function newFile() {
 
@@ -137,6 +144,17 @@ function debugImageBorder() {
 }
 }
 
+//<--------- debug caret display --------->
+function debugCaretDisplay() {
+  if (debugCaret == "false") {
+    debugCaret = "true";
+    updateAlert("dbgCOn");
+    } else {
+    debugCaret = "false";
+    updateAlert("dbgCOff");
+    }
+}
+
 //<--------- scale preview --------->
 function setScale(value){
   scale = value / 100;
@@ -146,9 +164,6 @@ function setScale(value){
 
 //<--------- split pane --------->
 function initDrag(e) {
-
-
-
    startX = e.clientX;
    startWidth = parseInt(document.defaultView.getComputedStyle(leftPane).width, 10);
    document.documentElement.addEventListener('mousemove', doDrag, false);
@@ -201,6 +216,12 @@ function checkButton(value) {
     case "dbgIbOff":
       dbgIbMessage.innerHTML = "image borders off";
       return
+    case "dbgCOn":
+      dbgCMessage.innerHTML = "caret display on";
+      return
+    case "dbgCOff":
+      dbgCMessage.innerHTML = "caret display off";
+      return
   }
 }
   // clear messages
@@ -210,5 +231,4 @@ function clearMessages() {
   dwnMessage.innerHTML = "download";
   updMessage.innerHTML = "upload";
   tocMessage.innerHTML = "table of contents";
-
 }

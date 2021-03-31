@@ -1,6 +1,5 @@
 
-// ----------------Render Preview----------------
-
+//<--------- get css --------->
 function getCSS(raw) {
 
   let cssRaw = "";
@@ -17,13 +16,55 @@ function getCSS(raw) {
   return
 }
 
+//<--------- editor-highlights --------->
+
+function applyHighlights(text) {
+  return text
+  // \n is causing missplacement on the highilghts, this is a temporary fix
+    .replace(/\\n/gim, 'XX')
+
+    .replace(/\$!/gim, '<highlight1>X!</highlight1>')
+    .replace(/\$/gim, '<highlight1>X</highlight1>')
+    .replace(/^\^/gim, '<highlight2>X</highlight2>')
+    .replace(/^(\#\s.*)/gim, '<highlight3>$1</highlight3>');
+}
+
+function textHighlights() {
+  editorHighlights.innerHTML = applyHighlights(editorHighlights.textContent);
+  handleScroll();
+}
+
+function handleScroll() {
+  let scroll = textEditor.scrollTop;
+  editorHighlights.scrollTop = scroll;
+}
+
+//<--------- caret-position --------->
+
+function visibleCaret(value) {
+
+    if (debugCaret == "false") {
+      return value;
+    }
+
+  // get caret position
+    let caret = getCaretPosition(textEditor).start;
+
+  // add caret marker at caret position
+    let y =  value.slice(0 ,caret) + "<!" + value.slice(caret) ;
+
+    return y;
+}
+
+
+//<--------- parse markdown --------->
 function parseMarkdown(raw) {
 
   getCSS(raw);
 
   // get rid of css
   html = raw.replace(/<style>.*<\/style>/gis, '')
-    .replace(/(\\page.*)$/gim, '$1%p%')
+    .replace(/(\$[^\!])/gim, '$1%p%')
 
   // get book name
   bookName = html.match(/\\"([^"]*)"/im);
@@ -38,8 +79,8 @@ function parseMarkdown(raw) {
 
   // replace page breaks
   for (var i = 0; i < pages.length; i++) {
-    pages[i] = pages[i].replace(/^\\pageauto.*$/gim, '</div><div class="page"><div class="page-number">' + i + '</div><div class="book-name">' + bookName + '</div><div class="chapter-name">%cp%</div>')
-    pages[i] = pages[i].replace(/^\\page.*$/gim, '</div><div class="page">')
+    pages[i] = pages[i].replace(/\$\!/gim, '</div><div class="page">')
+    pages[i] = pages[i].replace(/\$/gim, '</div><div class="page"><div class="page-number">' + (i+1) + '</div><div class="book-name">' + bookName + '</div><div class="chapter-name">%cp%</div>')
   }
 
   // join pages
@@ -48,6 +89,9 @@ function parseMarkdown(raw) {
   for (var i = 0; i < pages.length; i++) {
     html += pages[i];
   }
+
+
+    html =  html.
 
   // custom markdown
   html = html.replace(/\\"([^"]*)"/im, '<title>$1</title>')
@@ -69,11 +113,9 @@ function parseMarkdown(raw) {
     .replace(/^\#\#\#\#\s?([^\#\n]+)/gim, '<h4>$1</h4>')
     .replace(/^\#\#\#\#\#\s?([^\#\n]+)/gim, '<h5>$1</h5>')
     .replace(/^\>\s?([^\#\n]+)/gim, '<blockquote>$1</blockquote>')
-    .replace(/^([^\#\n\<\\\>\%]+)/gim, '<p>$1</p>')
-    .replace(/(\n\n\n+)/gim, '<div class="paragraph-break"></div>')
-
-    // caret position
-    .replace(/\^/gim, '<mark>!</mark>')
+    .replace(/^([^\#\n\<\\\>\%].+)/gim, '<p>$1</p>')
+    .replace(/^\^/gim, '<p>  </p>')
+    .replace(/(\n{2}\n+)/gim, '<div class="paragraph-break"></div>')
 
   // identify chapter ends
   chapters = html.split(/%c%/gim);
@@ -99,12 +141,15 @@ function parseMarkdown(raw) {
 
   html = html.replace(/(?:\<div class="book-name"\>.*?\<\/div\>\n*?)(?:\<div class="chapter-name"\>.*?\<\/div\>\n*?)(\<h1>.*?\<\/h1\>)/g, '$1')
 
+  // replace caret marker with actual graphical representation
+  html = html.replace(/\<!/gim, '<mark>!</mark>')
+
   return html
 }
 
 function renderPreview(html) {
   return `<div class="book">
-            <div class="toc">
+            <div class="page toc">
               ${html}
             </div>
           </div>
@@ -112,27 +157,22 @@ function renderPreview(html) {
 }
 
 function pushPreview(value) {
-  html = parseMarkdown(value);
+  html = visibleCaret(value);
+  html = parseMarkdown(html);
   html = renderPreview(html);
 
   //update markdownText value
   markdownText = value;
+  editorHighlights.textContent = value;
   //update preview
   preview.innerHTML = html;
 }
 
-// Update Preview
-textEditor.addEventListener('keyup', debounce(evt => {
-
-  const { value } = evt.target;
-
-  pushPreview(value);
-
-}, 100))
-
-if (storedMarkdown) {
-  textEditor.value = storedMarkdown;
-  pushPreview(storedMarkdown);
-} else {
-  pushPreview(textEditor.textContent);
+function initParseOnLoad() {
+  if (storedMarkdown) {
+    textEditor.value = storedMarkdown;
+    pushPreview(storedMarkdown);
+  } else {
+    pushPreview(textEditor.textContent);
+  }
 }

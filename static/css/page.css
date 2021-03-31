@@ -2,17 +2,6 @@
 
 /* fonts */
 
-@font-face {
-  font-family: "gil";
-  src: url("../../static/fonts/gil/gil.ttf");
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "gil_b";
-  src: url("../../static/fonts/gil/gil_cb.ttf");
-  font-weight: bold;
-}
 
 /* base */
 
@@ -24,8 +13,6 @@ html {
 * {
   box-sizing: border-box;
   margin: 0;
-
-	font-family: "gil";
 }
 
 body {
@@ -40,21 +27,10 @@ body {
 
 /* toc  */
 .toc {
-  width: var(--page-width);
-  height: var(--page-height);
-  position: relative;
-  padding: 1.4cm 0.9cm 1.4cm 1.4cm;
-  break-after: always;
-  background-image: url();
-  background-size: contain;
-  margin-bottom: 30px;
-  font-size: 12pt;
-
-  background-color: white;
+  padding: 1.4cm 0.9cm 1.4cm 1.4cm !important;
 }
 
-/* pages  */
-.page {
+.toc, .page{
   width: var(--page-width);
   height: var(--page-height);
   position: relative;
@@ -62,21 +38,24 @@ body {
   background-size: contain;
   margin-top: 30px;
   font-size: 12pt;
-  break-before: always;
-  break-after: always;
+  page-break-after: always;
   overflow-wrap:  break-word;
 
   background: white;
+  z-index: -2;
+}
+
+/* pages  */
+.page a, h1, h2, h3, h4, p, blockquote, img {
+  z-index: 2;
 }
 
 .page:nth-child(n+1):nth-child(odd) {
   padding: 1.3cm 1.1cm 1.2cm 1.4cm;
-  background-position: 0mm 1mm;
 }
 
 .page:nth-child(n+1):nth-child(even) {
   padding: 1.3cm 1.4cm 1.2cm 1.1cm;
-  background-position: -1.5mm 0mm;
 }
 
 .page:nth-child(n+1):nth-child(even)::after {
@@ -248,6 +227,10 @@ body {
   text-align: justify;
   text-justify: inter-word;
   text-indent: 0pt;
+}
+
+.page p:last-of-type {
+  text-align-last: justify;
 }
 
 .book .paragraph-break{

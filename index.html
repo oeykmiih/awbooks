@@ -22,9 +22,10 @@
     <div class="empty" style="width:25vh"></div>
     <div class="button" id="dbgp-button"><div class="user-message" id="dbgp-message">page margins off</div></div>
     <div class="button" id="dbgIb-button"><div class="user-message" id="dbgIb-message">image border off</div></div>
+    <div class="button" id="dbgC-button"><div class="user-message" id="dbgC-message">caret display off</div></div>
     <div class="button" style="display: contents">
       <div class="user-message">scale preview!</div>
-      <div class="scale-box">
+      <div class="scale-box" style="margin: 0">
         <textarea class="scale-box-text" rows="1" cols="1">100</textarea>
       </div>
     </div>
@@ -33,28 +34,19 @@
   <div class="container">
 
       <div class="left-pane">
-          <textarea class="text-editor" id="text-editor" spellcheck="false" autocomplete="off" autofocus><style>
+        <div class="editor">
+        <div class="editor-backdrop">
+          <div class="editor-highlights">
 
-.book {
-  --page-width: 11cm;
-  --page-height: 18cm;
-}
-.page {
-background-image: url('../../static/images/ref/Kuma.Kengo_AntiObject_2.png');
-background: white;
+          </div>
+        </div>
 
-font-size: 12pt;
-}
-
-</style>
-
+        <textarea class="text-editor" id="text-editor" spellcheck="false" autocomplete="off" autofocus>
 \"complexity and contradiction"
 
 #> "Contents"
 
-## 1. A Gentle Manifesto: \n Non-straightforward Architecture
-
-\page
+## 1. A Gentle Manifesto: \n Non-straightforward Architecture$!
 
 This remarkable study is the first in a series of occasional papers concerned with the theoretical background of modern architecture. Unlike other Museum publications in architecture and design, the series will be independent of the Museum's exhibition program. It will explore ideas too complex for presentation in exhibition form, and authors will represent no single professional group.
 
@@ -65,244 +57,13 @@ Mr. Venturi's book is published by the Museum in collaboration with the Graham F
 Like his buildings, Venturi's book opposes what many would consider Establishment, or at least established, opinions. He speaks with uncommon candor, addressing himself to actual conditions: the ambiguous and sometimes unattractive "facts" in which architects find themselves enmeshed at each moment, and whose confusing mature Venturi would seek to make the basis of architectural design. It is an alternative point of view vigorously championed by Vincent Scully of Yale University, whose introduction contrasts the frustrations of abstractly preconceived architectural order with Venturi's delight in reality—especially in those recalcitrant aspects most architects would seek to suppress or disguise. Venturi's recommendations can be tested immediately: they need not wait on legislation or technology. Problems in the architecture he seeks to supplant are so far from being resolved that, whether or not we agree with his results, we are impelled to grant him an attentive hearing.
 
 
-Arthur Drexler Director Department of Architecture
-
-\pageauto
+Arthur Drexler Director Department of Architecture$
 
 
 # Introduction
 
-This is not an easy book. It requires professional commitment and close visual attention, and is not for those architects who, lest they offend them, pluck out their eyes. Indeed, its argument unfolds like a curtain slowly lifting from the eyes. Piece by piece, in close focus after focus, the whole emerges. And that whole is new—hard to see, hard to write about, graceless and inarticulate as only the new can be.
-
-
-It is a very American book, rigorously pluralistic and phenomenological in its method; one is reminded of Dreiser, laboriously trodding out the way. Yet it is probably the most important writing on the making of architecture since Le Corbusier's Vers une Architecture, of 1923. Indeed, at first sight, Venturi's position seems exactly the opposite of Le Corbusier's, its first and natural complement across time. This is not to say that Venturi is Le Corbusier's equal in persuasiveness or achievement—or will necessarily ever be. Few will attain to that level again. The experience of Le Corbusier's buildings themselves has surely had not a little to do with forming Venturi's ideas. Yet his views do in fact balance those of Le Corbusier as they were expressed in his early writings and as they have generally affected two architectural generations since that time. The older book demanded a noble purism in architecture, in single buildings and in the city as a whole; the new book welcomes the contradictions and complexities of urban experience at all scales. It marks, in this way, a complete shift of emphasis and will annoy some of those who profess to follow Le Corbusier now, exactly as Le Corbusier infuriated many who belonged to the Beaux-Arts then. Hence the books do in fact complement each other; and in one fundamental way they are much the same. Both are by architects who have really learned something from the architecture of the past. Few contemporary architects have been able to do this and have instead tended to take refuge in various systems of what can only be called historical propaganda. For Le Corbusier and
-
-\pageauto
-
-Venturi, the experience was personal and direct. Each was thus able to free himself from the fixed patterns of thought and the fashions of his contemporaries, so carrying out Camus' injunction to leave behind for a while "our age and its adolescent furies."
-
-
-> Here I do not forget Bruno Zevi's Towards an Organic Architecture, of 1950, which was consciously written as a reply to Le Corbusier. One cannot, however, regard it as a complement to the other or as an advance upon it, since it was hardly more than a reaction against it in favor of "organic" principles which had been formulated by architects other than Zevi and had indeed passed their peak of vitality long before. They had found their best embodiment in the work of Frank Lloyd Wright before 1914 and their clearest verbal statement in his writings of that period.
-
-
-Each learned most from very different things. Le Corbusier's great teacher was the Greek temple, with its isolated body white and free in the landscape, its luminous austerities clear in the sun. In his early polemics he would have his buildings and his cities just that way, and his mature architecture itself came more and more to embody the Greek temple's sculptural, actively heroic character. Venturi's primary inspiration would seem to have come from the Greek temple's historical and archetypal opposite, the urban facades of Italy, with their endless adjustments to the counter-requirements of inside and outside and their inflection with all the business of everyday life: not primarily sculptural actors in vast landscapes but complex spatial containers and definers of streets and squares. Such "accommodation" also becomes a general urban principle for Venturi. In this he again resembles Le Corbusier, in so far as they are both profoundly visual, plastic artists whose close focus upon individual buildings brings with it a new visual and symbolic attitude toward urbanism in general—not the schematic or two-dimensionally diagrammatic view toward which many planners tend, but a set of solid images, architecture itself at its full scale.
-
-\pageauto
-
-
-Yet again, the images of Le Corbusier and Venturi are diametrically opposed in this regard. Le Corbusier, exercising that side of his many-sided nature which professed Cartesian rigor, generalized in Vers une Architecture much more easily than Venturi does here, and presented a clear, general scheme for the whole. Venturi is more fragmentary, moving step by step through more compromised relationships. His conclusions are general only by implication. Yet it seems to me that his proposals, in their recognition of complexity and their respect for what exists, create the most necessary antidote to that cataclysmic purism of contemporary urban renewal which has presently brought so many cities to the brink of catastrophe, and in which Le Corbusier's ideas have now found terrifying vulgarization. They are a hero's dreams applied en masse—as if an Achilles were to become the king. That is why, one supposes, Venturi is so consistently anti-heroic, compulsively qualifying his recommendations with an implied irony at every turn. Le Corbusier used irony too, but his was as sharp as a steel-toothed smile. Venturi shrugs his shoulders ruefully and moves on. It is this generation's answer to grandiose pretensions which have shown themselves in practice to be destructive or overblown.
-
-
-Like all original architects, Venturi makes us see the past anew. He has made me, for example, who once focused upon the proto-Wrightian continuities of the Shingle Style, revalue their equally obvious opposite: the complicated accommodations of inside and outside with which those architects themselves were surely entranced. And he has even called attention once more to the principle of accommodation in Le Corbusier's early plans. So, all inventive architects bring their dead to life again as a matter of course. It is appropriate that Le Corbusier and Venturi should come together on the question of Michelangelo, in whose work heroic action and complex qualification found special union. Venturi fixes less than Le Corbusier upon the unified assertion of Michelangelo's conception in St. Peter's but, like Le Corbusier, he sees and, as the fenestration of his Friends' Housing for the Aged shows, can build in
-
-\pageauto
-
-accordance with the other: the sad and mighty discordances of the apses, that music drear and grand of dying civilizations and the fate of mankind on a cooling star.
-
-
-In that sense Venturi is, for all his own ironic disclaimers, one of the few American architects whose work seems to approach tragic stature in the tradition of Furness, Louis Sullivan, Wright, and Kahn. His being so suggests the power of successive generations, living in one place, to develop an intensity of meaning; so much of it is carried in Philadelphia: from Frank Furness to the young Sullivan, and on through Wilson Eyre and George Howe to Louis Kahn. Kahn is Venturi's closest mentor, as he has been for almost all the best young American architects and educators of the past decade, such as Giurgola, Moore, Vreeland, and Millard. The dialogue so developed, in which Aldo Van Eyck of Holland has also played an outstanding role, has surely contributed much to Venturi's development. Kahn's theory of "institutions" has been fundamental to all these architects, but Venturi himself avoids Kahn's structural Preoccupations in favor of a more flexibly function-directed method which is closer to that of Alvar Aalto. Unlike his writing, Venturi's design unfolds without strain. In it he is as facile as an architect of the Baroque and, in the same sense, as scenographic. (His project for the Roosevelt Memorial, probably the best, surely the most original of the entries, shows how serene and grand that scenographic talent can be.) There is none of Kahn's grim struggle in him, no profound agony of structural and functional opposites seeking expression. He is entirely at home with the particular and so offers the necessary opposition to the technological homogenizers who crowd our future. There is surely no quarrel here with Le Corbusier, or even with Mies, despite the universal regularity of the latter's forms. Many species of high quality can inhabit the same world. Such multiplicity is indeed the highest promise of the modern age to mankind, far more intrinsic to its nature than the superficial conformity or equally arbitrary packaging which its first stages suggest and which are so eagerly embraced by superficial designers.
-
-\pageauto
-
-
-The essential point is that Venturi's philosophy and design are humanistic, in which character his book resembles Geoffrey Scott's basic work, The Architecture of Humanism, of 1914. Therefore, it values before all else the actions of human beings and the effect of physical forms upon their spirit. In this, Venturi is an Italian architect of the great tradition—whose contact with that tradition came from art history at Princeton and a fellowship at the American Academy in Rome. But, as his Friends' Housing shows equally well, he is one of the very few architects whose thought parallels that of the Pop painters—and probably the first architect to perceive the usefulness and meaning of their forms. He has clearly learned a good deal from them during the past few years, though the major argument of this book was laid out in the late fifties and predates his knowledge of their work. Yet his "Main Street is almost all right," is just like their viewpoint, as is his instinct for changes of scale in small buildings and for the unsuspected life to be found in the common artifacts of mass culture when they are focused upon individually. The "Pop" in Le Corbusier's "Purism," as in that of the young Léger, should not be forgotten here, and it takes on renewed historical significance as its lesson of exploded scale and sharpened focus is learned once more. Again, one has the feeling that Le Corbusier, painter and theorist that he was, would have best understood Venturi's alliance of visual method with intellectual intention.
-
-
-It is significant in this regard that Venturi's ideas have so far stirred bitterest resentment among the more academic-minded of the Bauhaus generation—with its utter lack of irony, its spinsterish disdain for the popular culture but shaky grasp on any other, its incapacity to deal with monumental scale, its lip-service to technology, and its preoccupation with a rather prissily puristic aesthetic. Most of the Bauhaus design of the twenties, in buildings and furniture alike, can be distinguished by exactly those characteristics from Le Corbusier's more generous and varied forms of the period. Two strains in modern architecture seem to separate here, with Le Corbusier and Venturi now seen as working the same larger, more humane, architects' rather than
-
-\pageauto
-
-"designers'" vein.
-
-
-Venturi's projected City Hall for North Canton, Ohio, shows how his architecture also has a connection with the late work of Sullivan and so with the deepest untapped force of American vernacular experience as a whole. This is surely Venturi's largest achievement in American terms, that he opens our eyes again to the nature of things as they are in the United States—in the small town no less than in New York—and that out of our common, confused, mass-produced fabric he makes a solid architecture; he makes an art. In so doing he revives the popular traditions, and the particularized methodology, of the pre-Beaux Arts, pre-International Style, period. He thus completes that renewed connection with the whole of our past which Kahn's mature work had begun.
-
-
-It is no wonder that few of the present crop of redevelopers can yet endure him. They, too, are much in the American grain, village boys with their noses pressed against the window of the candy store and with money to burn for the first time. So, they are generally buying junk, fancy trash readymade by an army of architectural entrepreneurs, who portentously supply a spurious simplicity and the order of the tomb: the contemporary package, par excellence. Venturi looks both too complicated and too much like every day for such people, who, in their architectural forms as in their social programs, would much prefer to gloss over a few of reality's more demanding faces. Hence, precisely because he recognizes and uses social phenomena as they exist, Venturi is the least "stylish" of architects, going always straight to the heart of the matter, working quickly without either fancy pretenses or vaporish asides. Although he has learned from Mannerist architecture, his own buildings are in no sense "mannered," but surprisingly direct. After all, a television aerial at appropriate scale crowns his Friends' Housing, exactly as it fills—here neither good nor bad but a fact—our old people's lives. Whatever dignity may be in that, Venturi embodies, but he does not lie to us once concerning what the facts are. In the straightest sense, it is function that interests him, and the strong forms deriving
-
-\pageauto
-
-from functional expression. Unlike too many architects of this generation, he is never genteel.
-
-
-It is no wonder that Venturi's buildings have not found ready acceptance; they have been both too new and, for all their "accommodation" of complexity, too truly simple and unassuming for this affluent decade. They have refused to make much out of nothing, to indulge in flashy gestures, or to pander to fashion. They have been the product of a deeply systematic analysis in programmatic and visual terms and have therefore required a serious reorientation in all our thinking. Hence the symbolic image which prepares our eyes to see them has not yet been formed. This book may help in that regard. I believe that the future will value it among the few basic texts of our time—one which, despite its anti-heroic lack of pretension and its shift of perspective from the Champs-Elysées to Main Street, still picks up a fundamental dialogue begun in the twenties, and so connects us with the heroic generation of modern architecture once more.
-\n
-
-
-Vincent Scully
-
-## Note to the Second Edition
-
-
-There is no way to separate form from meaning; one cannot exist without the other. There can only be different critical assessments of the major ways through which form transmits meaning to the viewer: through empathy, said the nineteenth century, it embodies it; through the recognition of signs, say the linguists, it conveys it. Each side would agree that the relevant functioning agent in this process of the human brain is the memory: empathy and the identification of signs are both learned responses, the result of specific cultural experiences. The two modes of knowing and of deriving meaning from outside reality complement each other and are both at work in varying degrees in the shaping and the perception of all works of art.
-
-
-In that sense, the making and the experience of architecture, as of every art, are always critical-historical
-
-\pageauto
-
-acts, involving what the architect and the viewer have learned to distinguish and to image through their own relationship with life and things. It therefore follows that the strength and value of our contact with art will depend upon the quality of our historical knowledge. And it is obvious that knowledge instead of learning is the word which has to be employed here.
-
-
-Venturi's two major books have been constructed along precisely these lines. They are both critical and historical. This one, the first, despite its significant introduction of several important modes of literary criticism into architectural writing, explores mainly the physical reaction to form and is thus basically empathetic in method. The second, Learning from Las Vegas (written with authors Denise Scott Brown and Steven Izenour), is primarily concerned with the function of sign in human art and is therefore fundamentally linguistic in its approach. Between them the two volumes, always impeccably visual in their argument, shape an impressive working aesthetic for contemporary architects.
-
-
-At this distance, I feel doubly honored to have been invited to write the original introduction, which now seems to me not so well written as the book itself (edited by Marian Scully), but embarrassingly correct in its conclusions. I am especially pleased to have had the wit to assert in it that Complexity and Contradiction was "the most important writing on the making of architecture since Le Corbusier's Vers une Architecture, of 1923." Time has shown that this outrageous statement was nothing more than the unvarnished truth, and the critics who found it most amusing or infuriating at that moment now seem to spend a remarkable amount of energy quoting Venturi without acknowledgment, or chiding him for not going far enough, or showing that they themselves had really said it all long before. It doesn't matter much. What counts is that this brilliant, liberating book was published when it was. It provided architects and critics alike with more realistic and effective weapons, so that the breadth and relevance which the architectural dialogue has since achieved were largely initiated by it.
-
-\pageauto
-
-Of primary interest are the newly eloquent buildings that have been inspired by its method, of which those by Venturi and Rauch have not surprisingly remained the most intellectually focused, archetypal, and distinguished. Once again, as when it sponsored the exhibition from which Hitchcock and Johnson's The International Style of 1932 derived, The Museum of Modern Art started something important when it backed this book.
-\n
-
-
-VS. April, 1977
-
-\pageauto
-
-## Preface
-
-
-This book is both an attempt at architectural criticism and an apologia—an explanation, indirectly, of my work. Because I am a practicing architect, my ideas on architecture are inevitably a by-product of the criticism which accompanies working, and which is, as T. S. Eliot has said, of "capital importance . . . in the work of creation itself. Probably, indeed, the larger part of the labour of sifting, combining, constructing, expunging, correcting, testing:
-this frightful toil is as much critical as creative. I maintain even that the criticism employed by a trained and skilled writer on his own work is the most vital, the highest kind of criticism . . ."? I write, then, as an architect who employs criticism rather than a critic who chooses architecture and this book represents a particular set of emphases, a way of seeing architecture, which I find valid.
-
-
-In the same essay Eliot discusses analysis and comparison as tools of literary criticism. These critical methods are valid for architecture too: architecture is open to analysis like any other aspect of experience, and is made more vivid by comparisons. Analysis includes the breaking up of architecture into elements, a technique I frequently use even though it is the opposite of the integration which is the final goal of art. However paradoxical it appears, and despite the suspicions of many Modern architects, such disintegration is a process present in all creation, and it is essential to understanding. Self-consciousness is necessarily a part of creation and criticism. Architects today are too educated to be either primitive or totally spontaneous, and architecture is too complex to be approached with carefully maintained ignorance.
-
-
-As an architect I try to be guided not by habit but by a conscious sense of the past—by precedent, thoughtfully considered. The historical comparisons chosen are part of a continuous tradition relevant to my concerns. When Eliot writes about tradition, his comments are equally relevant to architecture, notwithstanding the more obvious changes in architectural methods due to technological innovations.
-\pageauto
-
-"In English writing," Eliot says, "we seldom speak of tradition. ... Seldom, perhaps, does the word appear except in a phrase of censure. If otherwise, it is vaguely approbative, with the implication, as to a work approved, of some pleasing archaeological reconstruction. ... Yet if the only form of tradition, of handing down, consisted in following the ways of the immediate generation before us in a blind or timid adherence to its successes, ‘tradition' should be positively discouraged. ... Tradition is a matter of much wider significance. It cannot be inherited, and if you want it you must obtain it by great labour. It involves, in the first place, the historical sense, which we may call nearly indispensable to anyone who would continue to be a poet beyond his twenty-fifth year; and the historical sense involves perception, not only of the pastness of the past, but of its presence; the historical sense compels a man to write not merely with his own generation in his bones, but with a feeling that the whole of the literature of Europe ... has a simultaneous existence and composes a simultaneous order. This historical sense, which is a sense of the timeless as well as of the temporal and of the timeless and temporal together, is what makes a writer traditional, and it is at the same time what makes a writer most acutely conscious of his place in time, of his own contemporaneity. ... No poet, no artist of any kind, has his complete meaning alone." I agree with Eliot and reject the obsession of Modern architects who, to quote Aldo van Eyck, "have been harping continually on what is different in our time to such an extent that they have lost touch with what is not different, with what is essentially the same."
-
-
-The examples chosen reflect my partiality for certain eras: Mannerist, Baroque, and Rococo especially. As Henry-Russell Hitchcock says, "there always exists a real need to re-examine the work of the past. There is, presumably, almost always a generic interest in architectural history among architects; but the aspects, or periods, of history that seem at any given time to merit the closest attention certainly vary with changing sensibilities." As an artist I frankly write about what I like in architecture: complexity
-
-\pageauto
-
- and contradiction. From what we find we like—what we are easily attracted to—we can learn much of what we really are. Louis Kahn has referred to "what a thing wants to be," but implicit in this statement is its opposite: what the architect wants the thing to be. In the tension and balance between these two lie many of the architect's decisions.
-
-
-The comparisons include some buildings which are neither beautiful nor great, and they have been lifted abstractly from their historical context because I rely less on the idea of style than on the inherent characteristics of specific buildings. Writing as an architect rather than as a scholar, my historical view is that described by Hitchcock: "Once, of course, almost all investigation of the architecture of the past was in aid of its nominal reconstitution—an instrument of revivalism. That is no longer true, and there is little reason to fear that it will, in our time, become so again. Both the architects and the historian-critics of the early twentieth century, when they were not merely seeking in the past fresh ammunition for current polemical warfare, taught us to see all architecture, as it were, abstractly, false though such a limited vision probably is to the complex sensibilities that produced most of the great architecture of the past. When we re-examine—or discover—this or that aspect of earlier building production today, it is with no idea of repeating its forms, but rather in the expectation of feeding more amply new sensibilities that are wholly the product of the present. To the pure historian this may seem regrettable, as introducing highly subjective elements into what he believes ought to be objective studies. Yet the pure historian, more often than not, will eventually find himself moving in directions that have been already determined by more sensitive weathervanes."
-
-
-I make no special attempt to relate architecture to other things. I have not tried to "improve the connections between science and technology on the one hand, and the humanities and the social sciences on the other . . . and make of architecture a more human social art. "I try to talk about architecture rather than around it. Sir John Summerson has referred to the architects' obsession with "the importance, not
-
-\pageauto
-
-of architecture, but of the relation of architecture to other things."' He has pointed out that in this century architects have substituted the "mischievous analogy" for the eclectic imitation of the nineteenth century, and have been staking a claim for architecture rather than producing architecture. The result has been diagrammatic planning. The architect's ever diminishing power and his growing ineffectualness in shaping the whole environment can perhaps be reversed, ironically, by narrowing his concerns and concentrating on his own job. Perhaps then relationships and power will take care of themselves. I accept what seem to me architecture's inherent limitations, and attempt to concentrate on the difficult particulars within it rather than the easier abstractions about it ". . . because the arts belong (as the ancients said) to the practical and not the speculative intelligence, there is no surrogate for being on the job."
-
-
-This book deals with the present, and with the past in relation to the present. It does not attempt to be visionary except insofar as the future is inherent in the reality of the present. It is only indirectly polemical. Everything is said in the context of current architecture and consequently certain targets are attacked—in general, the limitations of orthodox Modern architecture and city planning, in particular, the platitudinous architects who invoke integrity, technology, or electronic programming as ends in architecture, the popularisers who paint "fairy stories over our chaotic reality" and suppress those complexities and contradictions inherent in art and experience. Nevertheless, this book is an analysis of what seems to me true for architecture now, rather than a diatribe against what seems false.
-
-
-## Note to the Second Edition
-
-
-I wrote this book in the early 1960's as a practicing architect responding to aspects of architectural theory and dogma of that time. The issues are different now, and I think the book might be read today for its general theories about architectural form but also as a particular document of its
-
-\pageauto
-
-time, more historical than topical. For this reason, the second part of the book, which covers the work of our firm up to 1966, is not expanded in this second edition.
-
-
-I now wish the title had been Complexity and Contradiction in Architectural Form, as suggested by Donald Drew Egbert. In the early '60's, however, form was king in architectural thought, and most architectural theory focused without question on aspects of form. Architects seldom thought of symbolism in architecture then, and social issues came to dominate only in the second half of that decade. But in hindsight this book on form in architecture complements our focus on symbolism in architecture several years later in Learning from Las Vegas.
-
-
-To rectify an omission in the acknowledgments of the first edition, I want to express my gratitude to Richard Krautheimer, who shared his insights on Roman Baroque architecture with us Fellows at the American Academy in Rome. I am grateful also to my friend Vincent Scully for his continued and very kind support of this book and of our work. I am happy that The Museum of Modern Art is enlarging the format of this edition so that the illustrations are now more readable. Perhaps it is the fate of all theorists to view the ripples from their works with mixed feelings. I have sometimes felt more comfortable with my critics than with those who have agreed with me. The latter have often misapplied or exaggerated the ideas and methods of this book to the point of parody.
-
-
-Some have said the ideas are fine but don't go far enough. But most of the thought here was intended to be suggestive rather than dogmatic, and the method of historical analogy can be taken only so far in architectural criticism. Should an artist go all the way with his or her philosophies?
-
-\n
-
-
-R.V. April, 1977
-
-\pageauto
-
-# 1. A Gentle Manifesto: \n Non-straightforward Architecture
-
-
-I like complexity and contradiction in architecture. I do not like the incoherence or arbitrariness of incompetent architecture nor the precious intricacies of picturesqueness or expressionism. Instead, I speak of a complex and contradictory architecture based on the richness and ambiguity of modern experience, including that experience which is inherent in art. Everywhere, except in architecture, complexity and contradiction have been acknowledged, from Gédel's proof of ultimate inconsistency in mathematics to T. S. Eliot's analysis of "difficult" poetry and Joseph Albers' definition of the paradoxical quality of painting.
-
-
-But architecture is necessarily complex and contradictory in its very inclusion of the traditional Vitruvian elements of commodity, firmness, and delight. And today the wants of program, structure, mechanical equipment, and expression, even in single buildings in simple contexts, are diverse and conflicting in ways previously unimaginable. The increasing dimension and scale of architecture in urban and regional planning add to the difficulties. I welcome the problems and exploit the uncertainties. By embracing contradiction as well as complexity, I aim for vitality as well as validity.
-
-
-Architects can no longer afford to be intimidated by the puritanically moral language of orthodox Modern architecture. I like elements which are hybrid rather than "pure," compromising rather than "clean," distorted rather than "straightforward," ambiguous rather than "articulated," perverse as well as impersonal, boring as well as "interesting," conventional rather than "designed," accommodating rather than excluding, redundant rather than simple, vestigial as well as innovating, inconsistent and equivocal rather than direct and clear. I am for messy
-
-\pageauto
- vitality over obvious unity. I include the non sequitur and proclaim the duality.
-
-
-I am for richness of meaning rather than clarity of meaning; for the implicit function as well as the explicit function. I prefer "both-and" to "either-or," black and white, and sometimes gray, to black or white. A valid architecture evokes many levels of meaning and combinations of focus: its space and its elements become readable and workable in several ways at once.
-
-
-But an architecture of complexity and contradiction has a special obligation toward the whole: its truth must be in its totality or its implications of totality. It must embody the difficult unity of inclusion rather than the easy unity of exclusion. More is not less.
-
-\page
-
-# 2. Complexity and Contradiction vs. Simplification or Picturesqueness
-
-
-Orthodox Modern architects have tended to recognize complexity insufficiently or inconsistently. In their attempt to break with tradition and start all over again, they idealized the primitive and elementary at the expense of the diverse and the sophisticated. As participants in a revolutionary movement, they acclaimed the newness of modern functions, ignoring their complications. In their role as reformers, they puritanically advocated the separation and exclusion of elements, rather than the inclusion of various requirements and their juxtapositions. As a forerunner of the Modern movement, Frank Lloyd Wright, who grew up with the motto "Truth against the World," wrote: "Visions of simplicity so broad and far-reaching would open to me and such building harmonies appear that . . . would change and deepen the thinking and culture of the modern world. So, I believed." And Le Corbusier, co-founder of Purism, spoke of the "great primary forms" which, he proclaimed, were "distinct . . ..and without ambiguity. "Modern architects with few exceptions eschewed ambiguity.
-
-
-But now our position is different: "At the same time that the problems increase in quantity, complexity, and difficulty they also change faster than before," and require an attitude more like that described by August Heckscher: "The movement from a view of life as essentially simple and orderly to a view of life as complex and ironic is what every individual pass through in becoming mature. But certain epochs encourage this development; in them the paradoxical or dramatic outlook colors the whole intellectual scene. . .. Amid simplicity and order rationalism is born, but rationalism proves inadequate in any period of upheaval. Then equilibrium must be created out of opposites.
-
-\pageauto
-
-Such inner peace as men gain must represent a tension among contradictions and uncertainties. . .. A feeling for paradox allows seemingly dissimilar things to exist side by side, their very incongruity suggesting a kind of truth."
-
-
-Rationalizations for simplification are still current, however, though subtler than the early arguments. They are expansions of Mies van der Rohe's magnificent paradox, "Jess is more." Paul Rudolph has clearly stated the implications of Mies' point of view: "All problems can never be solved. . .. Indeed, it is a characteristic of the twentieth century that architects are highly selective in determining which problems they want to solve. Mies, for instance, makes wonderful buildings only because he ignores many aspects of a building. If he solved more problems, his buildings would be far less potent."
-
-
-The doctrine "less is more" bemoans complexity and justifies exclusion for expressive purposes. It does, indeed, permit the architect to be "highly selective in determining which problems [he wants] to solve." But if the architect must be "committed to his particular way of seeing the universe," such a commitment surely means that the architect determines how problems should be solved, not that he can determine which of the problems he will solve. He can exclude important considerations only at the risk of separating architecture from the experience of life and the needs of society. If some problems prove insoluble, he can express this: in an inclusive rather than an exclusive kind of architecture there is room for the fragment, for contradiction, for improvisation, and for the tensions these produce. Mies' exquisite pavilions have had valuable implications for architecture, but their selectiveness of content and language is their limitation as well as their strength.
-
-
-I question the relevance of analogies between pavilions and houses, especially analogies between Japanese pavilions and recent domestic architecture. They ignore the real complexity and contradiction inherent in the domestic program—the spatial and technological possibilities as well as the need for variety in visual experience. Forced simplicity results in oversimplification. In the Wiley House,
-
-\pageauto
-
-for instance (1), in contrast to his glass house (2), Philip Johnson attempted to go beyond the simplicities of the elegant pavilion. He explicitly separated and articulated the enclosed "private functions" of living on a ground floor pedestal, thus separating them from the open social functions in the modular pavilion above. But even here the building becomes a diagram of an oversimplified program for living—an abstract theory of either-or. Where simplicity cannot work, simpleness results. Blatant simplification means bland architecture. Less is a bore.
-
-
-The recognition of complexity in architecture does not negate what Louis Kahn has called "the desire for simplicity." But aesthetic simplicity which is a satisfaction to the mind derives, when valid and profound, from inner complexity. The Doric temple's simplicity to the eye is achieved through the famous subtleties and precision of its distorted geometry and the contradictions and tensions inherent in its order. The Doric temple could achieve apparent simplicity through real complexity. When complexity disappeared, as in the late temples, blandness replaced simplicity.
-
-
-Nor does complexity deny the valid simplification which is part of the process of analysis, and even a method of achieving complex architecture itself. "We oversimplify a given event when we characterize it from the standpoint of a given interest." But this kind of simplification is a method in the analytical process of achieving a complex art. It should not be mistaken for a goal.
-
-
-An architecture of complexity and contradiction, however, does not mean picturesqueness or subjective expressionism. A false complexity has recently countered the false simplicity of an earlier Modern architecture. It promotes an architecture of symmetrical picturesqueness—which Minoru Yamasaki calls "serene"—but it represents a new formalism as unconnected with experience as the former cult of simplicity. Its intricate forms do not reflect genuinely complex programs, and its intricate ornament, though dependent on industrial techniques for execution, is dryly reminiscent of forms originally created by handicraft
-
-\pageauto
-
-techniques. Gothic tracery and Rococo rocaille were not only expressively valid in relation to the whole, but came from a valid showing-off of hand skills and expressed a vitality derived from the immediacy and individuality of the method. This kind of complexity through exuberance, perhaps impossible today, is the antithesis of "serene" architecture, despite the superficial resemblance between them. But if exuberance is not characteristic of our art, it is tension, rather than "serenity" that would appear to be so.
-
-
-The best twentieth-century architects have usually rejected simplification—that is, simplicity through reduction —in order to promote complexity within the whole. The works of Alvar Aalto and Le Corbusier (who often disregards his polemical writings) are examples. But the characteristics of complexity and contradiction in their work are often ignored or misunderstood. Critics of Aalto, for instance, have liked him mostly for his sensitivity to natural materials and his fine detailing, and have considered his whole composition wilful picturesqueness. I do not consider Aalto's Imatra church picturesque. By repeating in the massing, the genuine complexity of the triple-divided plan and the acoustical ceiling pattern (3), this church represents a justifiable expressionism different from the wilful Picturesqueness of the haphazard structure and spaces of Giovanni Michelucci's recent church for the Autostrada (4)." Aalto's complexity is part of the program and structure of the whole rather than a device justified only by the desire for expression. Though we no longer argue over the primacy of form or function (which follows which?), we cannot ignore their interdependence.
-
-
-The desire for a complex architecture, with its attendant contradictions, is not only a reaction to the banality or prettiness of current architecture. It is an attitude common in the Mannerist periods: the sixteenth century in Italy or the Hellenistic period in Classical art, and is also a continuous strain seen in such diverse architects as Michelangelo, Palladio, Borromini, Vanbrugh, Hawksmoor, Soane, Ledoux, Butterfield, some architects of the Shingle Style, Furness,
-
-\pageauto
-
-Sullivan, Lutyens, and recently, Le Corbusier, Aalto, Kahn, and others.
-
-
-Today this attitude is again relevant to both the medium of architecture and the program in architecture.
-
-
-First, the medium of architecture must be re-examined if the increased scope of our architecture as well as the complexity of its goals is to be expressed. Simplified or superficially complex forms will not work. Instead, the variety inherent in the ambiguity of visual perception must once more be acknowledged and exploited.
-
-
-Second, the growing complexities of our functional problems must be acknowledged. I refer, of course, to those programs, unique in our time, which are complex because of their scope, such as research laboratories, hospitals, and particularly the enormous projects at the scale of city and regional planning. But even the house, simple in scope, is complex in purpose if the ambiguities of contemporary experience are expressed. This contrast between the means and the goals of a program is significant. Although the means involved in the program of a rocket to get to the moon, for instance, are almost infinitely complex, the goal is simple and contains few contradictions; although the means involved in the program and structure of buildings are far simpler and less sophisticated technologically than almost any engineering project, the purpose is more complex and often inherently ambiguous.
-
-
-> I have visited Giovanni Michelucci's Church of the Autostrada since writing these words. and I now realize it is an extremely beautiful and effective building. I am therefore sorry I made this unsympathetic comparison.
-
-</textarea>
+This is not an easy book. It requires professional commitment and close visual attention, and is not for those architects who, lest they offend them, pluck out their eyes. Indeed, its argument unfolds like a curtain slowly lifting from the eyes. Piece by piece, in close focus after focus, the whole emerges. And that whole is new—hard to see, hard to write about, graceless and inarticulate as only the new can be.</textarea>
+</div>
     </div>
     <div class="split-pane" id="split-pane">
 
@@ -318,7 +79,7 @@ Second, the growing complexities of our functional problems must be acknowledged
   </div>
 
 <script src="static/scripts/main.js"></script>
-<script src="static/scripts/parse-markdown.js"></script>
+<script src="static/scripts/editor-core.js"></script>
 <script src="static/scripts/tools.js"></script>
 </body>
 <footer>

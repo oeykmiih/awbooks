@@ -15,6 +15,24 @@
   color: #1c1c1c;
 }
 
+@keyframes caretAnimation {
+	49% {
+		visibility: visible;
+	}
+
+	50% {
+		visibility: hidden;
+	}
+
+	99% {
+		visibility: hidden;
+	}
+
+	100% {
+		visibility: visible;
+	}
+}
+
 body {
    -webkit-print-color-adjust: exact;
 }
@@ -64,6 +82,7 @@ body {
   z-index: 2;
   height: 5vh;
   width: 5vh;
+	margin: 0;
 
 
 	line-height: inherit;
@@ -115,14 +134,16 @@ input[type="file"] {
 
 	color: inherit;
   position: absolute;
-  right: 0px;
+  right: 0vw;
+
 }
 
 .scale-box-text {
   height: 100%;
   width: 100%;
 	text-align: inherit;
-	line-height: inherit;
+	vertical-align: middle;
+	line-height: 4vh;
 
 	color: inherit;
   background-color: #616161;
@@ -130,6 +151,7 @@ input[type="file"] {
   outline: none;
   resize: none;
   border: none;
+	overflow: hidden;
 }
 
 .scale-box-text:hover{
@@ -171,6 +193,11 @@ input[type="file"] {
   z-index: 1;
 }
 
+.editor {
+	width: 100%;
+  height: 100%;
+}
+
 .text-editor {
   outline: none;
   resize: none;
@@ -179,9 +206,46 @@ input[type="file"] {
   height: 100%;
 
   color: #ffffff;
-  background-color: #3d3d3d;
+  background-color: transparent;
+}
 
-  padding: 20px;
+.text-editor, .editor-highlights {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	overflow-y: scroll;
+	resize: none;
+}
+
+.editor-backdrop {
+	width: 100%;
+	height: 100%;
+  overflow-y: auto;
+	position: absolute;
+
+	background: #3d3d3d;
+	z-index: -1;
+}
+
+.editor-highlights {
+	word-break: break-word !important;
+  white-space: pre-line;
+	color: transparent;
+}
+
+.editor-highlights highlight1 {
+  color: #b932ab;
+  background-color: #b932ab; /* or whatever */
+}
+
+.editor-highlights highlight2 {
+  color: #cf964b;
+  background-color: #cf964b; /* or whatever */
+}
+
+.editor-highlights highlight3 {
+  color: #3283b9;
+  background-color: #3283b9; /* or whatever */
 }
 
 .preview {
@@ -192,7 +256,19 @@ input[type="file"] {
   position: relative;
 }
 
-mark {
-	color: red;
-	background:red;
+.page mark, .toc mark {
+	color: transparent;
+  /* background-color: #b932ab; */
+  border-left: #fc3556 solid 3px;
+
+	opacity: 1;
+	width: 3px;
+	line-height: .75em;
+
+	z-index: -1;
+	position: absolute;
+
+	animation-name: caretAnimation;
+	animation-duration: 1.05s;
+	animation-iteration-count: infinite;
 }

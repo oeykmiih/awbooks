@@ -1,56 +1,104 @@
-.grid {
+/* ----------------Main Stylesheet---------------- */
+@keyframes hiddenToVisible {
+	0% { visibility: none; opacity: }
+  1% { visibility: visible; opacity: 0.00}
+	100% { opacity: 1.00; }
+}
+
+* {
+
+}
+
+body {
+   -webkit-print-color-adjust: exact;
+}
+
+/* editor */
+
+.container {
+	 display: flex;
+  height: 100vh;
+}
+
+.left-pane {
+  position: relative;
+  width: 40vw;
+  height: 100vh;
+	flex: 1;
+}
+
+.right-pane {
+  background-color: lightgray;
+  z-index: 1;
+
+  width: 50vw;
+  height: 100vh;
+	flex: 1;
+}
+
+.text-editor {
+  outline: none;
+  resize: none;
+  border: none;
+  width: 100%;
   height: 100%;
-  width: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(100, 1fr);
-  grid-template-rows: repeat(100, 1fr);
+  color: #ffffff;
+  background-color: #3d3d3d;
+
+  padding: 30px;
 }
 
-.gallery {
-  max-height: 100%;
-  width: 100%;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: top;
-
-  padding: 1mm;
+.preview {
+  padding: 30px;
+  position: relative;
 }
 
-.image-card {
-  min-height: 16.6%;
-  width: 100%;
-  max-width: 100%;
-  max-height: 100%;
+/* book */
 
-  grid-column: span 30;
-  grid-row: span 20;
+.page {
 
-  padding: 1mm 1mm;
+  width: 74mm;
+  height: 115mm;
+  overflow: hidden;
+
+  line-height: 25px;
+  scroll-behavior: auto;
+
+	border: red dashed 2px;
 }
 
-
-.page:nth-child(n+1):nth-child(odd)::after {
-  background-color: grey;
-  content: '';
-  display: block;
+.debug-box {
   position: absolute;
-  top: 1.3cm;
-  left: 1.1cm;
-  bottom: 1.2cm;
-  right: 1.4cm;
-  opacity: 50%;
+  top: 50px;
+  right: 50px;
+
+  z-index: 100;
 }
 
-.page:nth-child(n+1):nth-child(even)::after {
-  background-color: grey;
-  content: '';
-  display: block;
-  position: absolute;
-  top: 1.3cm;
-  left: 1.4cm;
-  bottom: 1.2cm;
-  right: 1.1cm;
-  opacity: 50%;
+@media print {
+	*{
+		margin: 0;
+	}
+
+	.left-pane {
+		display: none;
+	}
+
+	.right-pane {
+
+	}
+
+	.preview {
+		padding: 0 !important;
+	}
+
+	.page {
+		width: 74mm;
+		height: 104.9mm;
+
+		margin: 0 !important;
+
+		page-break-after: always;
+	}
 }
