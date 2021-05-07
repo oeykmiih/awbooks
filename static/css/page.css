@@ -61,30 +61,6 @@ body {
   padding: 13mm 14mm 12mm 11mm;
 }
 
-/* .page:nth-child(n+1):nth-child(even)::after {
-  content: '';
-  display: var(--debugPageMargin);
-  position: absolute;
-  top: 13mm;
-  left: 11mm;
-  bottom: 12mm;
-  right: 14mm;
-
-  border: dashed palevioletred 2px;
-}
-
-.page:nth-child(n+1):nth-child(odd)::after {
-  content: '';
-  display: var(--debugPageMargin);
-  position: absolute;
-  top: 13mm;
-  left: 14mm;
-  bottom: 12mm;
-  right: 11mm;
-
-  border: dashed palevioletred 2px;
-} */
-
 /* header */
 .header {
   width:100%;
@@ -181,6 +157,8 @@ body {
   /* chrome */
   line-height: 16pt;
 
+  padding-bottom: 11.5pt;
+
   margin: 0;
 }
 
@@ -203,20 +181,13 @@ body {
 .book h2 {
   font-size: 11pt;
   text-transform: uppercase;
-
-  padding-bottom: 10pt;
 }
 
 .book p+h2, .paragraph-break+h2 {
-  padding-top: 10pt;
 }
 
 .book h3 {
   font-size: 12pt;
-  padding-bottom: 13pt;
-}
-
-.book h4 {
 }
 
 .book br{

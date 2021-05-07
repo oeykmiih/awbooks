@@ -15,12 +15,14 @@ const save_button = document.getElementById('save-button');
 const upd_button = document.getElementById('upd-button');
 const dwn_button = document.getElementById('dwn-button');
 const toc_button = document.getElementById('toc-button');
+const prt_imp_button = document.getElementById('prt-imp-button');
 
 const new_message = document.getElementById('new-message');
 const save_message = document.getElementById('save-message');
 const upd_message = document.getElementById('upd-message');
 const toc_message = document.getElementById('toc-message');
 const dwn_message = document.getElementById('dwn-message');
+const prt_imp_message = document.getElementById('prt-imp-message');
 
 // css
 let css_main = load_file('static/css/main.css');
@@ -40,6 +42,7 @@ let html;
 // variables
 let markdown_default = load_file('../../static/text/new.txt');
 markdown_default.then(a => {markdown_default = a});
+let xxx = markdown_default;
 
 let book_name = "download";
 let chapter_list = new Array;
@@ -122,7 +125,7 @@ function load_file(path) {
 
 // <--------- download --------->
 function download_text_file(filename, text) {
-    var element = document.createElement('a');
+    let element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
 
@@ -137,9 +140,9 @@ function download_text_file(filename, text) {
 // <--------- clean DOM --------->
 function clean(node)
 {
-  for(var n = 0; n < node.childNodes.length; n ++)
+  for(let n = 0; n < node.childNodes.length; n ++)
   {
-    var child = node.childNodes[n];
+    let child = node.childNodes[n];
     if
     (
       child.nodeType === 8 

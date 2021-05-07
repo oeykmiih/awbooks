@@ -75,7 +75,7 @@ for (var i = 1; i < headings.length; i++) {
 }
 
 for (var i = 1; i < headings.length; i++) {
-  toc += '## ' + chapterPage[i] + '. ' + headings[i] + '\n\n'
+  toc += '## ' + (chapterPage[i] + 1) + '. ' + headings[i] + '\n\n'
 }
 
 toc = toc.slice(0, -2);
@@ -99,8 +99,8 @@ function set_scale(value){
 function init_drag(e) {
    startX = e.clientX;
    startWidth = parseInt(document.defaultView.getComputedStyle(left_pane).width, 10);
-   document.documentElement.addEventListener('mousemove', doDrag, false);
-   document.documentElement.addEventListener('mouseup', stopDrag, false);
+   document.documentElement.addEventListener('mousemove', do_drag, false);
+   document.documentElement.addEventListener('mouseup', stop_drag, false);
 }
 
 function do_drag(e) {
@@ -108,8 +108,8 @@ function do_drag(e) {
 }
 
 function stop_drag(e) {
-  document.documentElement.removeEventListener('mousemove', doDrag, false);
-  document.documentElement.removeEventListener('mouseup', stopDrag, false);
+  document.documentElement.removeEventListener('mousemove', do_drag, false);
+  document.documentElement.removeEventListener('mouseup', stop_drag, false);
 }
 
 
@@ -137,6 +137,8 @@ function check_button(value) {
     case "toc":
       toc_message.innerHTML = "ctrl + v to paste!";
       return
+    case "prt-imp":
+      toc_message.innerHTML = "printing!";
   }
 }
   // clear messages
@@ -146,4 +148,5 @@ function clear_messages() {
   dwn_message.innerHTML = "download";
   upd_message.innerHTML = "upload";
   toc_message.innerHTML = "table of contents";
+  prt_imp_message.innerHTML = "print with imposition";
 }

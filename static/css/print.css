@@ -96,4 +96,26 @@ html {
     border-top: 0.5mm solid black;
     border-left: 0.5mm solid black;
   }
+
+  .bleed-top-middle {
+    position: absolute;
+    width: 0.5mm;
+    height: 5mm;
+    z-index: 1;
+    top: 0mm;
+    right: 148mm;
+
+    background-color: black;
+  }
+
+  .bleed-bot-middle {
+    position: absolute;
+    width: 0.5mm;
+    height: 5mm;
+    z-index: 1;
+    bottom: 0mm;
+    right: 148mm;
+
+    background-color: black;
+  }
 }

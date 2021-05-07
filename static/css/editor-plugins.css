@@ -65,22 +65,3 @@
 	transform-origin: 0% 0%;
   position: relative;
 }
-
-
-/* <--------- caret ---------> */
-.page mark {
-	color: transparent;
-  /* background-color: #b932ab; */
-  border-left: #fc3556 solid 3px;
-
-	opacity: 1;
-	width: 3px;
-	line-height: .75em;
-
-	z-index: -1;
-	position: absolute;
-
-	animation-name: caretAnimation;
-	animation-duration: 1.05s;
-	animation-iteration-count: infinite;
-}

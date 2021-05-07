@@ -79,7 +79,7 @@ function parse_markdown(text) {
     html = text;
 
     // get book name
-    book_name = html.match(/\>\>"([^"]*)"/im)[1];
+    book_name = (!html.match(/\>\>"([^"]*)"/im)) ? 'download' : html.match(/\>\>"([^"]*)"/im)[1];
 
     html = html
       .replace(/\>\>"([^"]*)"/im, '<title>$1</title>')  
@@ -92,8 +92,8 @@ function parse_markdown(text) {
       .replace(/^\#\s?([^\#\n]+)/gim, '<h1>$1</h1>')
       .replace(/^\#\#\s?([^\#\n]+)/gim, '<h2>$1</h2>')
       .replace(/^\#\#\#\s?([^\#\n]+)/gim, '<h3>$1</h3>')
-      .replace(/^\#\#\#\#\s?([^\#\n]+)/gim, '<h4>$1</h4>')
-      .replace(/^\#\#\#\#\#\s?([^\#\n]+)/gim, '<h5>$1</h5>')
+      // .replace(/^\#\#\#\#\s?([^\#\n]+)/gim, '<h4>$1</h4>')
+      // .replace(/^\#\#\#\#\#\s?([^\#\n]+)/gim, '<h5>$1</h5>')
       .replace(/^\>\s?([^\#\n]+)/gim, '<blockquote>$1</blockquote>')
       .replace(/^([^\#\n\<\\\>\%]+)/gim, '<p>$1</p>')
       .replace(/(\n{2}\n+)/gim, '<div class="paragraph-break"></div>')
@@ -187,8 +187,6 @@ function impose_print() {
 function add_bleed_marks() {
   let book_print = document.getElementById('book');
 
-  console.log(book_print.children.length);
-
   for (let i = 0; i < book_print.children.length; i++) {
     let bleed_top_right = document.createElement('div')
     bleed_top_right.setAttribute('class', 'bleed-top-right')
@@ -201,14 +199,22 @@ function add_bleed_marks() {
   
     let bleed_bot_left = document.createElement('div')
     bleed_bot_left.setAttribute('class', 'bleed-bot-left')
+
+    let bleed_top_middle = document.createElement('div')
+    bleed_top_middle.setAttribute('class', 'bleed-top-middle')
+
+    let bleed_bot_middle = document.createElement('div')
+    bleed_bot_middle.setAttribute('class', 'bleed-bot-middle')
   
     book_print.children[i].appendChild(bleed_top_right);
     book_print.children[i].appendChild(bleed_top_left);
     book_print.children[i].appendChild(bleed_bot_right);
-    book_print.children[i].appendChild(bleed_bot_left);    
+    book_print.children[i].appendChild(bleed_bot_left);
+    book_print.children[i].appendChild(bleed_top_middle);
+    book_print.children[i].appendChild(bleed_bot_middle);
+    
+    
   }
-
- 
 }
 
 function print_pages() {
@@ -216,6 +222,8 @@ function print_pages() {
   add_bleed_marks();
 
   window.print()
+
+  return
 }
 
 //<--------- push preview (main calling function) --------->
@@ -236,10 +244,12 @@ function push_preview(raw) {
 }
 
 function parse_on_load() {
+
   if (stored_markdown) {
     editor.value = stored_markdown;
     push_preview(stored_markdown);
-  } else {
+  } else if (!editor.textContent) {
+  }  else {
     push_preview(editor.textContent);
   }
 }

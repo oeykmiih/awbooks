@@ -1,20 +1,3 @@
-//<--------- visible-position --------->
-
-function visibleCaret(value) {
-
-    if (toogle_caret == "false") {
-      return value;
-    }
-
-  // get caret position
-    let caret = getCaretPosition(editor).start;
-
-  // add caret marker at caret position
-    let y =  value.slice(0 ,caret) + "<!" + value.slice(caret) ;
-
-    return y;
-}
-
 //<--------- editor-highlights --------->
 
 function applyHighlights(text) {
