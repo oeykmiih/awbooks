@@ -40,7 +40,7 @@ let html;
 
 
 // variables
-let markdown_default = load_file('../../static/text/new.txt');
+let markdown_default = load_file('static/text/new.txt');
 markdown_default.then(a => {markdown_default = a});
 let xxx = markdown_default;
 
