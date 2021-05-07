@@ -26,9 +26,74 @@ html {
 
   body,
   html,
-  .page,
-  .toc {
+  .page {
     margin: 0 !important;
 
+  }
+
+  .sheet {
+    /* height: 210mm; */
+    /* TODO: understand why chrome doesn't break pages cleanly */
+    height: 209.5mm;
+    width: 297mm;
+    background: white;
+
+    margin: 0 !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    break-after: page;
+  }
+
+  .bleed-top-left {
+    position: absolute;
+    width: 5mm;
+    height: 5mm;
+    z-index: 1;
+    top: 10mm;
+    left: 33.5mm;
+
+    border-bottom: 0.5mm solid black;
+    border-right: 0.5mm solid black;
+  }
+
+  .bleed-top-right {
+    position: absolute;
+    width: 5mm;
+    height: 5mm;
+    z-index: 1;
+    top: 10mm;
+    right: 33.5mm;
+
+    border-bottom: 0.5mm solid black;
+    border-left: 0.5mm solid black;
+  }
+
+  .bleed-bot-left {
+    position: absolute;
+    width: 5mm;
+    height: 5mm;
+    z-index: 1;
+    bottom: 10mm;
+    left: 33.5mm;
+
+    border-top: 0.5mm solid black;
+    border-right: 0.5mm solid black;
+  }
+
+  .bleed-bot-right {
+    position: absolute;
+    width: 5mm;
+    height: 5mm;
+    z-index: 1;
+    bottom: 10mm;
+    right: 33.5mm;
+
+    border-top: 0.5mm solid black;
+    border-left: 0.5mm solid black;
   }
 }

@@ -1,0 +1,184 @@
+.body {
+  overflow: scroll;
+}
+
+.container {
+    height: 100vh;   
+}
+
+/* ----------------- print ----------------- */
+
+@media print {
+    
+.page {
+    margin: 0 !important;
+    z-index: 0;
+}
+
+.sheet {
+    height: 210mm;
+    width: 297mm;
+    background: white;
+
+    margin-bottom: 2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.sheet::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 15mm;
+    left: 38.5mm;
+    bottom: 15mm;
+    right: 38.5mm;
+  
+    border-bottom: 1px dashed;
+    border-right: 1px dashed;
+    z-index: 200;
+    
+  }
+
+}
+
+/* ----------------- base styling ----------------- */
+
+.book h1, .book h2, .book h3, .book h4 {
+  color: black;
+  font-weight: bold;
+
+  letter-spacing: 0pt;
+  word-spacing: 0pt;
+
+  /* chrome */
+/* line-height: 16pt; */
+
+    /* firefox */
+  line-height: 15.0pt;
+}
+
+.book h1 {
+  padding-top: 11mm;
+  padding-bottom: 8mm;
+
+
+  font-size: 12pt;
+  text-transform: uppercase;
+  text-align: center;
+
+  -webkit-column-break-before: always;
+}
+
+.book h2 {
+  font-size: 11pt;
+  text-transform: uppercase;
+
+  padding-bottom: 10pt;
+}
+
+.book p+h2, .paragraph-break+h2 {
+  padding-top: 10pt;
+}
+
+.book h3 {
+  font-size: 12pt;
+  padding-bottom: 13pt;
+}
+
+.book h4 {
+}
+
+.book br{
+}
+
+.book p{
+  font-size: 10pt;
+
+  /* chrome */
+/* line-height: 11.5pt; */
+
+    /* firefox */
+  line-height: 11.3pt;
+
+  letter-spacing: -0.09pt;
+  word-spacing: 0.13pt;
+
+  font-family: serif;
+  text-align: justify;
+  text-justify: inter-word;
+  text-indent: 0pt;
+}
+
+.page :not(h1, h2, image):last-child {
+  text-align-last: justify;
+}
+
+/* .book .paragraph-break{
+  display: none;
+} */
+
+.book p+p {
+  text-indent: 1rem;
+}
+
+.book blockquote{
+  position: relative;
+  left: -4mm;
+  width: calc(100% + 4mm);
+  padding: 7pt 0;
+
+  font-size: 9pt;
+  font-weight: bold;
+
+  /* chrome */
+/* line-height: 11.5pt; */
+
+    /* firefox */
+  line-height: 11.3pt;
+
+  letter-spacing: -0.08pt;
+  word-spacing: 0.13pt;
+}
+
+.book blockquote+blockquote {
+  padding-top: 0pt;
+}
+
+.book .p+blockquote {
+  padding-top: 0pt;
+  text-indent: 1rem;
+}
+
+.book .header {
+  width:100%;
+  position: absolute;
+  top:4mm;
+  left:0;
+
+  color: black;
+  font-weight: bold;
+  font-size: 12pt;
+
+  text-transform: uppercase;
+  text-align:center;
+  letter-spacing: 0pt;
+  word-spacing: 0pt;
+  line-height: 16pt;
+}
+
+/* ----------------- book structure ----------------- */
+
+.book {
+  height: 180mm;
+
+  width: 230mm;
+  /* width equals to = column count * column width + column count * (column-gap - 1)*/
+  column-count: 4;
+  column-width: 50mm;
+  column-gap: 10mm;
+}

@@ -1,0 +1,41 @@
+/* ----------------- setup ----------------- */
+
+.container {
+    height: 100vh;   
+}
+
+.page {
+    margin: 0 !important;
+    z-index: 0;
+}
+
+/* ----------------- testing ----------------- */
+
+.sheet {
+    height: 210mm;
+    width: 297mm;
+    background: white;
+
+    margin-bottom: 2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+.sheet::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 15mm;
+    left: 38.5mm;
+    bottom: 15mm;
+    right: 38.5mm;
+  
+    border-bottom: 1px dashed;
+    border-right: 1px dashed;
+    z-index: 200;
+    
+  }

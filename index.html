@@ -5,13 +5,14 @@
     <!-- <title>Markdown Editor</title> -->
     <link rel="stylesheet" href="static/css/normalize.css">
     <link rel="stylesheet" href="static/css/main.css">
+    <link rel="stylesheet" href="static/css/editor-plugins.css">
     <link rel="stylesheet" href="static/css/page.css">
     <link rel="stylesheet" href="static/css/print.css">
     <style id="css-custom"></style>
 </head>
 <body lang="en">
 
-    <div class="toolbar">
+  <div class="toolbar">
     <div class="button" id="new-button"><div class="user-message" id="new-message">new file</div></div>
     <div class="button" id="save-button"><div class="user-message" id="save-message">save</div></div>
     <div class="empty"></div>
@@ -20,16 +21,12 @@
     <div class="empty"></div>
     <div class="button" id="toc-button"><div class="user-message" id="toc-message">table of contents</div></div>
     <div class="empty" style="width:25vh"></div>
-    <div class="button" id="dbgp-button"><div class="user-message" id="dbgp-message">page margins off</div></div>
-    <div class="button" id="dbgIb-button"><div class="user-message" id="dbgIb-message">image border off</div></div>
-    <div class="button" id="dbgC-button"><div class="user-message" id="dbgC-message">caret display off</div></div>
     <div class="button" style="display: contents">
       <div class="user-message">scale preview!</div>
       <div class="scale-box" style="margin: 0">
         <textarea class="scale-box-text" rows="1" cols="1">100</textarea>
       </div>
     </div>
-
   </div>
   <div class="container">
 
@@ -42,11 +39,20 @@
         </div>
 
         <textarea class="text-editor" id="text-editor" spellcheck="false" autocomplete="off" autofocus>
-\"complexity and contradiction"
+>>"complexity and contradiction"
 
 #> "Contents"
 
 ## 1. A Gentle Manifesto: \n Non-straightforward Architecture$!
+
+This remarkable study is the first in a series of occasional papers concerned with the theoretical background of modern architecture. Unlike other Museum publications in architecture and design, the series will be independent of the Museum's exhibition program. It will explore ideas too complex for presentation in exhibition form, and authors will represent no single professional group.
+
+
+Mr. Venturi's book is published by the Museum in collaboration with the Graham Foundation for Advanced Studies in the Fine Arts. It is a particularly appropriate volume with which to inaugurate the series, as the author was originally enabled to work on the text through the aid of a Graham Foundation grant.
+
+
+Like his buildings, Venturi's book opposes what many would consider Establishment, or at least established, opinions. He speaks with uncommon candor, addressing himself to actual conditions: the ambiguous and sometimes unattractive "facts" in which architects find themselves enmeshed at each moment, and whose confusing mature Venturi would seek to make the basis of architectural design. It is an alternative point of view vigorously championed by Vincent Scully of Yale University, whose introduction contrasts the frustrations of abstractly preconceived architectural order with Venturi's delight in reality—especially in those recalcitrant aspects most architects would seek to suppress or disguise. Venturi's recommendations can be tested immediately: they need not wait on legislation or technology. Problems in the architecture he seeks to supplant are so far from being resolved that, whether or not we agree with his results, we are impelled to grant him an attentive hearing.
+\n
 
 This remarkable study is the first in a series of occasional papers concerned with the theoretical background of modern architecture. Unlike other Museum publications in architecture and design, the series will be independent of the Museum's exhibition program. It will explore ideas too complex for presentation in exhibition form, and authors will represent no single professional group.
 
@@ -71,7 +77,7 @@ This is not an easy book. It requires professional commitment and close visual a
 
     <div class="right-pane">
       <div class="preview" id="preview">
-        <div class="book">
+        <div class="book" id="book">
 
         </div>
       </div>
@@ -80,7 +86,10 @@ This is not an easy book. It requires professional commitment and close visual a
 
 <script src="static/scripts/main.js"></script>
 <script src="static/scripts/editor-core.js"></script>
-<script src="static/scripts/tools.js"></script>
+<script src="static/scripts/editor-plugins.js"></script>
+<script src="static/scripts/toolbar.js"></script>
+<script src="static/scripts/init.js"></script>
+
 </body>
 <footer>
 

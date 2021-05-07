@@ -1,85 +1,51 @@
 //---------------- Variables ----------------
 // html
-const textEditor = document.getElementById('text-editor');
+const editor = document.getElementById('text-editor');
 const preview = document.getElementById('preview');
-const storedMarkdown = window.localStorage.getItem("markdown");
-const leftPane = document.querySelector('.left-pane');
-const splitPane = document.querySelector('.split-pane');
-const scaleBox = document.querySelector('.scale-box-text');
-const editorHighlights = document.querySelector('.editor-highlights');
+const book = document.getElementById('book');
+const stored_markdown = window.localStorage.getItem("markdown");
+const left_pane = document.querySelector('.left-pane');
+const split_pane = document.querySelector('.split-pane');
+const scale_box = document.querySelector('.scale-box-text');
+const editor_hightlights = document.querySelector('.editor-highlights');
 
 
-const newButton = document.getElementById('new-button');
-const saveButton = document.getElementById('save-button');
-const updButton = document.getElementById('upd-button');
-const dwnButton = document.getElementById('dwn-button');
-const tocButton = document.getElementById('toc-button');
-const dbgpButton = document.getElementById('dbgp-button');
-const dbgIbButton = document.getElementById('dbgIb-button');
-const dbgCButton = document.getElementById('dbgC-button');
+const new_button = document.getElementById('new-button');
+const save_button = document.getElementById('save-button');
+const upd_button = document.getElementById('upd-button');
+const dwn_button = document.getElementById('dwn-button');
+const toc_button = document.getElementById('toc-button');
 
-const newMessage = document.getElementById('new-message');
-const saveMessage = document.getElementById('save-message');
-const updMessage = document.getElementById('upd-message');
-const dwnMessage = document.getElementById('dwn-message');
-const tocMessage = document.getElementById('toc-message');
-const dbgpMessage = document.getElementById('dbgp-message');
-const dbgIbMessage = document.getElementById('dbgIb-message');
-const dbgCMessage = document.getElementById('dbgC-message');
+const new_message = document.getElementById('new-message');
+const save_message = document.getElementById('save-message');
+const upd_message = document.getElementById('upd-message');
+const toc_message = document.getElementById('toc-message');
+const dwn_message = document.getElementById('dwn-message');
 
 // css
-let cssMain = loadFile('static/css/main.css');
-cssMain.then(a => {
-  cssMain = a
+let css_main = load_file('static/css/main.css');
+css_main.then(a => {
+  css_main = a
 });
 
-let cssPage = loadFile('static/css/page.css');
-cssPage.then(a => {
-  cssPage = a
-}).then(a => {
-  css = cssPage
+let css_page = load_file('static/css/page.css');
+css_page.then(a => {
+  css_page = a
 });
 
 //pre-defined
+let html;
 
 
 // variables
-let markdown = textEditor.textContent;
-let cssCustom = document.getElementById('css-custom').textContent;
-let scale = scaleBox.textContent;
+let markdown_default = load_file('../../static/text/new.txt');
+markdown_default.then(a => {markdown_default = a});
 
-let markdownDefault = loadFile('../../static/text/new.txt');
-markdownDefault.then(a => {markdownDefault = a});
-
-let css;
-let bookName;
-let pages;
-let chapters;
-let chaptersPush = new Array;
-
-let toc = "";
-let savedCaret = [];
-let startX , startWidth;
-
-let debugMarginOn = "false";
-let debugImageOn = "false";
-let debugCaret = "false";
-
-let textEditorContent;
+let book_name = "download";
+let chapter_list = new Array;
+let chapter_page = new Array;
 
 //---------------- Essentials ----------------
-
-// load file
-function loadFile(path) {
-  return fetch(path)
-  .then((response) => response.text())
-  .then((text) => {
-
-    return text;
-
-  })
-  .catch(err => {console.log(err);});
-}
 
 // debounce feature -> updates every x seconds
 let debounce = (func, delay) => {
@@ -95,14 +61,12 @@ let debounce = (func, delay) => {
 }
 
 // copy to clipboard
-function copyToClipboard(value) {
-  savedCaret [0] = getCaretPosition(textEditor).start;
-  savedCaret [1] = getCaretPosition(textEditor).end;
+function copy_to_clipboard(value) {
   navigator.clipboard.writeText(value);
 }
 
 // caret position
-function getCaretPosition(ctrl) {
+function get_caret_position(ctrl) {
     // IE < 9 Support
     if (document.selection) {
         ctrl.focus();
@@ -128,7 +92,7 @@ function getCaretPosition(ctrl) {
     }
 }
 
-function setCaretPosition(ctrl, start, end) {
+function set_caret_position(ctrl, start, end) {
     // IE >= 9 and other browsers
     if (ctrl.setSelectionRange) {
         ctrl.focus();
@@ -144,8 +108,20 @@ function setCaretPosition(ctrl, start, end) {
     }
 }
 
-//<--------- download --------->
-function downloadasTextFile(filename, text) {
+// <--------- load --------->
+function load_file(path) {
+  return fetch(path)
+  .then((response) => response.text())
+  .then((text) => {
+
+    return text;
+
+  })
+  .catch(err => {console.log(err);});
+}
+
+// <--------- download --------->
+function download_text_file(filename, text) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', filename);
@@ -156,4 +132,27 @@ function downloadasTextFile(filename, text) {
     element.click();
 
     document.body.removeChild(element);
+}
+
+// <--------- clean DOM --------->
+function clean(node)
+{
+  for(var n = 0; n < node.childNodes.length; n ++)
+  {
+    var child = node.childNodes[n];
+    if
+    (
+      child.nodeType === 8 
+      || 
+      (child.nodeType === 3 && !/\S/.test(child.nodeValue))
+    )
+    {
+      node.removeChild(child);
+      n --;
+    }
+    else if(child.nodeType === 1)
+    {
+      clean(child);
+    }
+  }
 }

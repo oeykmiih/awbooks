@@ -1,0 +1,86 @@
+
+/* <--------- editor-highlights ---------> */
+
+.text-editor, .editor-highlights {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	overflow-y: scroll;
+  resize: none;
+
+  font-family: monospace;
+  line-height: 1.5em;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+
+  word-break: break-word !important;
+  white-space: pre-line;
+  vertical-align: baseline;
+}
+
+.editor-backdrop {
+	width: 100%;
+	height: 100%;
+  overflow-y: auto;
+	position: absolute;
+
+	background: #3d3d3d;
+	z-index: -1;
+}
+
+.editor-highlights {
+  color: transparent;
+}
+
+.editor-highlights > * {
+  line-height: 1em; 
+  font-size: 1em;
+  font-family: monospace;
+}
+
+.editor-highlights highlight-page {
+  color: #b932ab;
+  background-color: #b932ab; 
+}
+
+.editor-highlights highlight-h1 {
+  color: #3283b9;
+  background-color: #3283b9;
+}
+
+.editor-highlights highlight-h2 {
+  color: #cf964b;
+  background-color: #cf964b; 
+}
+
+.editor-highlights highlight-br {
+    color: #815de2;
+    background-color: #815de2; 
+  }
+
+.preview {
+  padding: 20px;
+
+	font-size: inherit;
+	transform-origin: 0% 0%;
+  position: relative;
+}
+
+
+/* <--------- caret ---------> */
+.page mark {
+	color: transparent;
+  /* background-color: #b932ab; */
+  border-left: #fc3556 solid 3px;
+
+	opacity: 1;
+	width: 3px;
+	line-height: .75em;
+
+	z-index: -1;
+	position: absolute;
+
+	animation-name: caretAnimation;
+	animation-duration: 1.05s;
+	animation-iteration-count: infinite;
+}

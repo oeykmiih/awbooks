@@ -1,14 +1,14 @@
-<style>
+\"book title"
 
-.book {
-  --page-width: 11cm;
-  --page-height: 18cm;
-}
-.page {
-background-image: url('');
-background: white;
+# chapter title
 
-font-size: 12pt;
-}
+paragraph
 
-</style>
+// edit the on the right, see the changes on the left.
+
+// double brackets for comments
+// \n <- this adds a paragraph break
+// $ <- this symbol ends the page
+
+
+// ctrl + p to print, use A4 no margins. chrome recommended.
